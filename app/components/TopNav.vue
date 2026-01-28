@@ -4,79 +4,52 @@
       <!-- Logo Area -->
       <div class="nav-left group">
         <div class="logo-wrapper">
-          <h1 class="site-title">
-            <span class="text-highlight">色控</span>
-            <span class="text-cn">旗袍数据库</span>
-            <span class="text-author font-serif-cn">颜 Q</span>
-          </h1>
+          <div class="site-branding">
+            <h1 class="site-title">
+              <span class="logo-mark">🏷️</span> <!-- 临时使用 emoji 模拟紫色圈+“商标” -->
+              <span class="text-highlight">色控</span>
+              <span class="text-cn">旗袍数据库</span>
+              <span class="text-author font-serif-cn">颜 Q</span>
+            </h1>
+            <!-- 总量统计（绿色下划线） -->
+            <div class="total-stats-wrapper">
+              <div class="click-arrow">⤵</div>
+              <a href="#total-stats" class="total-stats-link">
+                点击 <span class="stats-highlight">色控旗袍总量 3559</span>
+              </a>
+              <!-- 盘扣心图标 (作为引导点) -->
+              <div class="pankou-heart-nav">
+                <span class="pankou-icon-small">@</span> <!-- 临时模拟盘扣心图标 -->
+                <span class="pankou-label-small">盘扣心</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Center Navigation -->
+      <!-- Center Navigation (Removed Search Box) -->
       <div class="nav-center">
-        <a href="#home" class="nav-link" :class="{ active: activeNav === 'home' }" @click="activeNav = 'home'">
-          <span class="link-text">首页</span>
-        </a>
-
-        <!-- Search -->
-        <div class="search-box-wrapper">
-          <div class="search-box" :class="{ 'focused': isSearchFocused }">
-            <div class="search-icon-wrapper">
-              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-              </svg>
-            </div>
-            <input type="text" class="search-input" placeholder="探索旗袍之美..." v-model="searchQuery"
-              @focus="isSearchFocused = true" @blur="isSearchFocused = false" />
-          </div>
-          <div class="search-hint">
-            <span class="hint-label">旗袍总量</span>
-            <span class="hint-value">3559</span>
-          </div>
-        </div>
+        <!-- Center space is now empty or used for spacing -->
       </div>
 
       <!-- Right Actions Area -->
       <div class="nav-right">
-        <!-- 盘扣入口 -->
-        <button class="feature-btn pankou-btn" @click="goToPankou">
-          <span class="btn-icon">🔘</span>
-          <span class="btn-label">盘扣</span>
-        </button>
-
-        <!-- 色控展览 -->
-        <button class="feature-btn sekong-btn" @click="goToSeKong">
-          <span class="btn-icon">🎨</span>
-          <span class="btn-label">色控展览</span>
-        </button>
-
-        <div class="nav-divider"></div>
-
         <!-- Lang Switch -->
         <button class="lang-switch" @click="toggleLanguage">
           <span class="lang-text" :class="{ active: currentLang === 'zh' }">中</span>
           <span class="lang-divider">/</span>
-          <span class="lang-text" :class="{ active: currentLang === 'en' }">EN</span>
+          <span class="lang-text" :class="{ active: currentLang === 'en' }">英</span>
         </button>
 
-        <!-- Additional Nav Links -->
+        <div class="nav-divider"></div>
+
+        <!-- Links: 传承谱系 | 关于我们 -->
         <div class="nav-links">
-          <a href="#favorites" class="nav-link icon-link" title="收藏">
-            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-              </path>
-            </svg>
+          <a href="#heritage" class="nav-link">
+            <span class="link-text">传承谱系</span>
           </a>
           <a href="#about" class="nav-link">
             <span class="link-text">关于我们</span>
-          </a>
-          <a href="#contact" class="nav-link">
-            <span class="link-text">联系我们</span>
-          </a>
-          <a href="#login" class="nav-link login-btn">
-            <span class="link-text">登录</span>
           </a>
         </div>
       </div>
@@ -88,26 +61,10 @@
 import { ref } from 'vue'
 
 const currentLang = ref<'zh' | 'en'>('zh')
-const searchQuery = ref('')
-const isSearchFocused = ref(false)
-const activeNav = ref('home')
+// Removed searchQuery, isSearchFocused, activeNav, goToPankou, goToSeKong as they are no longer in TopNav
 
 const toggleLanguage = () => {
   currentLang.value = currentLang.value === 'zh' ? 'en' : 'zh'
-}
-
-const goToPankou = () => {
-  const element = document.getElementById('pankou')
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-}
-
-const goToSeKong = () => {
-  const element = document.getElementById('sekong')
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
 }
 </script>
 
@@ -121,6 +78,8 @@ const goToSeKong = () => {
   z-index: 1000;
   transition: all var(--transition-normal);
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  background: rgba(252, 252, 250, 0.9); /* Slightly more opaque */
+  backdrop-filter: blur(10px);
 }
 
 .nav-container {
@@ -131,25 +90,33 @@ const goToSeKong = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-md);
 }
 
-/* ==================== Logo ==================== */
+/* ==================== Logo & Stats ==================== */
 .nav-left {
-  display: flex;
-  align-items: center;
+  flex: 1; /* Allow left side to expand */
 }
 
 .logo-wrapper {
   position: relative;
-  cursor: pointer;
+}
+
+.site-branding {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .site-title {
   display: flex;
-  align-items: baseline;
-  gap: 4px;
+  align-items: center;
+  gap: 8px;
   line-height: 1;
+}
+
+.logo-mark {
+  font-size: 1.2rem;
+  /* Adjust color/style to match purple circle later if needed */
 }
 
 .text-highlight {
@@ -169,289 +136,132 @@ const goToSeKong = () => {
 .text-author {
   font-size: 1.1rem;
   color: var(--color-text-secondary);
-  margin-left: 8px;
   font-weight: 500;
+  margin-left: 4px;
 }
 
-/* ==================== Center Navigation ==================== */
-.nav-center {
+/* Total Stats Line */
+.total-stats-wrapper {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
-  flex: 1;
-  justify-content: center;
-}
-
-.search-box-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.search-box {
+  gap: 8px;
+  font-size: 0.9rem;
+  margin-left: 4px; /* Adjust alignment */
   position: relative;
-  flex: 1;
-  height: 42px;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: var(--border-radius-full);
-  display: flex;
-  align-items: center;
-  padding: 0 var(--spacing-md);
-  transition: all var(--transition-normal);
-  border: 1px solid transparent;
 }
 
-.search-hint {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-  min-width: 80px;
+.click-arrow {
+  color: var(--color-jade);
+  font-weight: bold;
+  transform: rotate(-10deg);
 }
 
-.hint-label {
-  font-size: 0.7rem;
-  color: var(--color-text-muted);
+.total-stats-link {
+  text-decoration: none;
+  color: var(--color-text-primary);
+  border-bottom: 2px solid var(--color-jade); /* Green underline */
+  padding-bottom: 1px;
+  font-weight: 600;
+  transition: opacity 0.2s;
 }
 
-.hint-value {
-  font-family: var(--font-serif-en);
-  font-size: 1.1rem;
-  font-weight: 700;
+.total-stats-link:hover {
+  opacity: 0.8;
+}
+
+.stats-highlight {
   color: var(--color-jade);
 }
 
-.search-box:hover {
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: var(--shadow-sm);
+/* Pankou Heart Nav - Visual only for TopNav */
+.pankou-heart-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 12px;
+  color: #8b5cf6; /* Purple color from sketch */
 }
 
-.search-box.focused {
-  background: white;
-  max-width: 400px;
-  box-shadow: var(--shadow-glow);
-  border-color: var(--color-gold-light);
+.pankou-icon-small {
+  font-size: 1.1rem;
+  border: 1px solid #8b5cf6;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.search-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--color-text-muted);
-  transition: color var(--transition-fast);
+.pankou-label-small {
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
-.search-box.focused .search-icon {
-  color: var(--color-primary-red);
-}
-
-.search-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  color: var(--color-text-primary);
-  margin-left: var(--spacing-sm);
-}
-
-.search-input::placeholder {
-  color: var(--color-text-muted);
+/* ==================== Center ==================== */
+.nav-center {
+  /* Empty for now, or spacer */
+  flex: 0.2;
 }
 
 /* ==================== Right Actions ==================== */
 .nav-right {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
+  justify-content: flex-end;
 }
 
 .nav-divider {
   width: 1px;
-  height: 24px;
-  background: rgba(0, 0, 0, 0.1);
-  margin: 0 var(--spacing-xs);
-}
-
-/* Feature Buttons */
-.feature-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: var(--border-radius-sm);
-  border: 1px solid var(--color-gold);
-  background: transparent;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  font-family: var(--font-serif-cn);
-  font-size: 0.9rem;
-}
-
-.feature-btn:hover {
-  background: var(--color-gold);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-glow);
-}
-
-.btn-icon {
-  font-size: 1rem;
-}
-
-.btn-label {
-  color: var(--color-text-primary);
-  font-weight: 500;
-}
-
-.feature-btn:hover .btn-label {
-  color: white;
-}
-
-.pankou-btn {
-  border-color: var(--color-primary-red);
-}
-
-.pankou-btn:hover {
-  background: var(--color-primary-red);
-  border-color: var(--color-primary-red);
-}
-
-.sekong-btn {
-  border-color: var(--color-gold);
-}
-
-.sekong-btn:hover {
-  background: var(--color-gold);
+  height: 18px;
+  background: rgba(0, 0, 0, 0.2);
+  margin: 0 4px;
 }
 
 /* Language Switch */
 .lang-switch {
   background: transparent;
   border: none;
-  font-family: var(--font-serif-en);
-  font-size: 0.85rem;
+  font-family: var(--font-serif-cn);
+  font-size: 1rem;
   cursor: pointer;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   display: flex;
-  gap: 3px;
-  transition: all var(--transition-fast);
-}
-
-.lang-text {
-  opacity: 0.5;
-  transition: opacity var(--transition-fast);
+  gap: 2px;
+  font-weight: 600;
 }
 
 .lang-text.active {
-  opacity: 1;
-  color: var(--color-primary-red);
-  font-weight: 600;
+  color: var(--color-text-primary); /* Keep it simple black/dark */
 }
 
 /* Nav Links */
 .nav-links {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
   align-items: center;
 }
 
 .nav-link {
   text-decoration: none;
   color: var(--color-text-primary);
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-serif-cn); /* Handwritten feel */
   position: relative;
-  padding: 6px 12px;
-  transition: all var(--transition-fast);
-  white-space: nowrap;
+  transition: color var(--transition-fast);
 }
 
 .nav-link:hover {
   color: var(--color-primary-red);
 }
 
-.nav-link.active {
-  color: var(--color-primary-red);
-}
-
-.nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 2px;
-  background: var(--color-primary-red);
-}
-
-.icon-link {
-  padding: 6px;
-}
-
-.link-icon {
-  width: 20px;
-  height: 20px;
-  transition: all var(--transition-fast);
-}
-
-.icon-link:hover .link-icon {
-  stroke: var(--color-primary-red);
-  fill: rgba(200, 16, 46, 0.1);
-}
-
-.login-btn {
-  padding: 8px 20px;
-  border: 1px solid var(--color-primary-red);
-  border-radius: var(--border-radius-sm);
-  color: var(--color-primary-red);
-  transition: all var(--transition-normal);
-}
-
-.login-btn:hover {
-  background: var(--color-primary-red);
-  color: white;
-  box-shadow: var(--shadow-sm);
-}
-
-/* ==================== Responsive ==================== */
-@media (max-width: 1200px) {
-  .feature-btn .btn-label {
-    display: none;
-  }
-
-  .feature-btn {
-    padding: 8px;
-  }
-}
-
+/* Responsive */
 @media (max-width: 1024px) {
-  .nav-container {
-    padding: 0 var(--spacing-md);
-  }
-
-  .nav-link .link-text {
-    display: none;
-  }
-
-  .nav-link.login-btn .link-text {
-    display: inline;
+  .total-stats-wrapper {
+    display: none; /* Hide complex stats on smaller screens */
   }
 }
 
-@media (max-width: 768px) {
-  .search-box {
-    display: none;
-  }
-
-  .nav-divider {
-    display: none;
-  }
-
-  .lang-switch {
-    display: none;
-  }
-}
 </style>

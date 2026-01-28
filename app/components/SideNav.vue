@@ -23,14 +23,9 @@
         </filter>
       </defs>
 
-      <!-- The Silk Path (Background Line) - 北斗七星样式 -->
-      <path class="nav-path-bg" d="M 60 30 
-           Q 130 80, 100 140
-           Q 70 200, 120 260
-           Q 170 320, 110 380
-           Q 50 440, 100 500
-           Q 150 560, 90 620
-           Q 30 660, 60 680" stroke="url(#silkGradient)" stroke-width="4" fill="none" stroke-linecap="round" />
+      <!-- The Silk Path (Background Line) - 北斗七星样式 (折线连接) -->
+      <path class="nav-path-bg" :d="constellationPath" stroke="url(#silkGradient)" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" />
 
       <!-- Navigation Nodes -->
       <g v-for="(item, index) in navItemsWithPositions" :key="item.id" class="nav-node" :class="{
@@ -87,15 +82,18 @@ const navItems: NavItem[] = [
   { id: '3d-sim', label: '旗袍3D仿真' }
 ]
 
-// 北斗七星曲线坐标 - 扩展为 7 个点
+// 北斗七星坐标 (模拟真实的勺子形状 + 连线)
 const positions = [
-  { x: 180, y: 50 },   // 颜
-  { x: 140, y: 130 },  // 色控原创
-  { x: 190, y: 220 },  // 旗袍样式
-  { x: 130, y: 320 },  // 旗袍工艺
-  { x: 160, y: 440 },  // 旗袍盘扣
-  { x: 100, y: 540 },  // 旗袍色彩
-  { x: 150, y: 640 }   // 旗袍3D仿真
+  // 斗勺部分 (Alpha, Beta, Gamma, Delta)
+  { x: 160, y: 100 }, // 1. 天枢 (Dubhe) - 颜
+  { x: 190, y: 160 }, // 2. 天璇 (Merak) - 色控原创
+  { x: 160, y: 240 }, // 3. 天玑 (Phecda) - 旗袍样式
+  { x: 120, y: 220 }, // 4. 天权 (Megrez) - 旗袍工艺 (勺柄连接处)
+
+  // 斗柄部分 (Epsilon, Zeta, Eta)
+  { x: 90, y: 300 },  // 5. 玉衡 (Alioth) - 旗袍盘扣
+  { x: 70, y: 380 },  // 6. 开阳 (Mizar) - 旗袍色彩
+  { x: 40, y: 480 }   // 7. 摇光 (Alkaid) - 旗袍3D仿真
 ]
 
 const navItemsWithPositions = computed<NavItemWithPosition[]>(() => {
@@ -103,6 +101,17 @@ const navItemsWithPositions = computed<NavItemWithPosition[]>(() => {
     ...item,
     ...positions[index]
   }))
+})
+
+// 生成折线路径
+const constellationPath = computed(() => {
+  if (positions.length === 0) return ''
+  const start = positions[0]
+  let path = `M ${start.x} ${start.y}`
+  for (let i = 1; i < positions.length; i++) {
+    path += ` L ${positions[i].x} ${positions[i].y}`
+  }
+  return path
 })
 
 const activeItem = ref<string>('styles')
