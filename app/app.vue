@@ -23,6 +23,9 @@
       <!-- 色控展览入口区域 -->
       <SeKongSection />
 
+      <!-- 旗袍样式与派系区域 -->
+      <StylesSection />
+
       <!-- 图片展示区域 -->
       <GallerySection />
 
