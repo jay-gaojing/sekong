@@ -11,17 +11,11 @@
               <span class="text-cn">旗袍数据库</span>
               <span class="text-author font-serif-cn">颜 Q</span>
             </h1>
-            <!-- 总量统计（绿色下划线） -->
+            <!-- 总量统计（绿色下划线）- 交互式弹出 -->
             <div class="total-stats-wrapper">
-              <div class="click-arrow">⤵</div>
-              <a href="#total-stats" class="total-stats-link">
-                点击 <span class="stats-highlight">色控旗袍总量 3559</span>
-              </a>
-              <!-- 盘扣心图标 (作为引导点) -->
-              <div class="pankou-heart-nav">
-                <span class="pankou-icon-small">@</span> <!-- 临时模拟盘扣心图标 -->
-                <span class="pankou-label-small">盘扣心</span>
-              </div>
+              <button class="stats-trigger-btn" @click="showStatsModal = true">
+                <span class="stats-text">色控旗袍总量 3559</span>
+              </button>
             </div>
           </div>
         </div>
@@ -54,6 +48,29 @@
         </div>
       </div>
     </div>
+    
+    <!-- Stats Modal Popup -->
+    <transition name="fade">
+      <div v-if="showStatsModal" class="stats-modal-overlay" @click.self="showStatsModal = false">
+        <div class="stats-modal glass">
+          <button class="close-btn" @click="showStatsModal = false">×</button>
+          <div class="modal-content">
+             <h3 class="modal-title">色控旗袍数据库统计</h3>
+             <div class="stats-grid">
+               <div class="stat-item">
+                 <span class="stat-value">3559</span>
+                 <span class="stat-label">总收录量</span>
+               </div>
+               <div class="stat-item">
+                 <span class="stat-value">128</span>
+                 <span class="stat-label">新增收录</span>
+               </div>
+             </div>
+             <p class="modal-desc">实时更新全球旗袍藏品数据，连接传统与现代。</p>
+          </div>
+        </div>
+      </div>
+    </transition>
   </nav>
 </template>
 
@@ -61,11 +78,130 @@
 import { ref } from 'vue'
 
 const currentLang = ref<'zh' | 'en'>('zh')
-// Removed searchQuery, isSearchFocused, activeNav, goToPankou, goToSeKong as they are no longer in TopNav
+const showStatsModal = ref(false)
 
 const toggleLanguage = () => {
   currentLang.value = currentLang.value === 'zh' ? 'en' : 'zh'
 }
+</script>
+
+<style scoped>
+/* ... existing styles ... */
+
+/* Total Stats Line - Interactive */
+.total-stats-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-left: 4px; /* Adjust alignment */
+  margin-top: 4px;
+}
+
+.stats-trigger-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--color-jade);
+  border-bottom: 2px solid var(--color-jade);
+  transition: all 0.2s;
+  position: relative;
+}
+
+.stats-trigger-btn:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+/* Stats Modal */
+.stats-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+
+.stats-modal {
+  width: 90%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  position: relative;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+}
+
+.modal-title {
+  font-family: var(--font-serif-cn);
+  color: var(--color-primary-red);
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  background: rgba(212, 175, 55, 0.05);
+  border-radius: 8px;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.modal-desc {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 </script>
 
 <style scoped>
