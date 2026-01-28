@@ -1,0 +1,529 @@
+<template>
+    <section id="bagua-nav" class="bagua-section">
+        <div class="container relative z-10">
+            <header class="section-header text-center mb-16">
+                <h2 class="section-title">探索旗袍之美</h2>
+                <p class="section-subtitle">点击罗盘，开启东方美学之旅</p>
+            </header>
+
+            <!-- 罗盘容器 -->
+            <div class="nav-compass-container" :class="{ 'is-open': isOpen }">
+                
+                <!-- 背景装饰：星宿连线 (Constellation) -->
+                <div class="constellation-bg">
+                    <svg viewBox="0 0 600 600" class="constellation-svg">
+                        <defs>
+                            <filter id="glow-line" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="2" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                        </defs>
+                        <!-- 动态生成的连线 -->
+                        <g class="lines-group" v-if="isOpen">
+                            <!-- 连接内圈 -->
+                            <line v-for="(item, i) in innerCategories" :key="'l-in-'+i"
+                                x1="300" y1="300"
+                                :x2="300 + Math.cos((item.angle - 90) * Math.PI / 180) * 140"
+                                :y2="300 + Math.sin((item.angle - 90) * Math.PI / 180) * 140"
+                                class="constellation-line inner-line"
+                                :style="{ '--delay': i * 0.1 + 's' }"
+                            />
+                            <!-- 连接外圈 -->
+                            <line v-for="(item, i) in outerCategories" :key="'l-out-'+i"
+                                x1="300" y1="300"
+                                :x2="300 + Math.cos((item.angle - 90) * Math.PI / 180) * 240"
+                                :y2="300 + Math.sin((item.angle - 90) * Math.PI / 180) * 240"
+                                class="constellation-line outer-line"
+                                :style="{ '--delay': (i * 0.1 + 0.3) + 's' }"
+                            />
+                        </g>
+                        <!-- 装饰圆环 -->
+                        <circle cx="300" cy="300" r="140" class="orbit-ring inner-orbit" />
+                        <circle cx="300" cy="300" r="240" class="orbit-ring outer-orbit" />
+                    </svg>
+                </div>
+
+                <!-- 外圈 (Outer Ring) -->
+                <div class="ring-layer outer-layer">
+                    <div v-for="(item, index) in outerCategories" :key="item.id"
+                        class="nav-item outer-item"
+                        :class="{ 'active': activeCategory === item.id }"
+                        :style="{ 
+                            '--angle': item.angle + 'deg', 
+                            '--delay': (index * 0.05 + 0.2) + 's',
+                            '--distance': '240px'
+                        }"
+                        @click="selectCategory(item)"
+                    >
+                        <div class="item-content glass">
+                            <span class="item-icon">{{ item.icon }}</span>
+                            <span class="item-label">{{ item.label }}</span>
+                        </div>
+                        <div class="item-dot"></div>
+                    </div>
+                </div>
+
+                <!-- 内圈 (Inner Ring) -->
+                <div class="ring-layer inner-layer">
+                    <div v-for="(item, index) in innerCategories" :key="item.id"
+                        class="nav-item inner-item"
+                        :class="{ 'active': activeCategory === item.id }"
+                        :style="{ 
+                            '--angle': item.angle + 'deg', 
+                            '--delay': (index * 0.05) + 's',
+                            '--distance': '140px'
+                        }"
+                        @click="selectCategory(item)"
+                    >
+                        <div class="item-content glass">
+                            <span class="item-icon">{{ item.icon }}</span>
+                            <span class="item-label">{{ item.label }}</span>
+                        </div>
+                        <div class="item-dot"></div>
+                    </div>
+                </div>
+
+                <!-- 中心控制 (Center Lid) -->
+                <div class="center-control" @click="toggleOpen">
+                    <div class="center-lid glass-dark">
+                        <div class="lid-content">
+                            <span class="logo-text font-serif-cn">旗</span>
+                            <span class="lid-hint">{{ isOpen ? '收起' : '开启' }}</span>
+                        </div>
+                        <div class="lid-decoration"></div>
+                    </div>
+                    <!-- 脉冲光环 -->
+                    <div class="center-glow"></div>
+                </div>
+
+            </div>
+
+            <!-- 选中分类详情展示 -->
+            <transition name="fade-slide">
+                <div class="category-detail glass" v-if="activeCategory && isOpen">
+                    <div class="detail-header">
+                        <span class="detail-icon">{{ activeItem?.icon }}</span>
+                        <h3 class="detail-title">{{ activeItem?.title }}</h3>
+                    </div>
+                    <p class="detail-desc">{{ activeItem?.description }}</p>
+                    <button class="enter-btn" @click="enterCategory">
+                        <span>进入展厅</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </transition>
+        </div>
+
+        <!-- 背景纹理 -->
+        <div class="bg-texture"></div>
+    </section>
+</template>
+
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+
+interface Category {
+    id: string
+    label: string
+    icon: string
+    title: string
+    description: string
+    angle: number // 角度位置
+}
+
+// 内圈数据：婚庆、原创、新中式
+const innerCategories: Category[] = [
+    { id: 'wedding', label: '婚庆', icon: '囍', title: '龙凤呈祥 · 婚庆系列', description: '传统中式嫁衣，承载千年祝福与喜庆。', angle: 0 },
+    { id: 'original', label: '原创', icon: '匠', title: '独具匠心 · 原创设计', description: '融合现代审美的独立设计师作品。', angle: 120 },
+    { id: 'new-chinese', label: '新中式', icon: '潮', title: '国潮新风 · 新中式', description: '日常可穿的东方美学时尚。', angle: 240 },
+]
+
+// 外圈数据：时装、服饰、少年、少女
+const outerCategories: Category[] = [
+    { id: 'fashion', label: '时装', icon: '裳', title: '摩登时代 · 时装旗袍', description: '改良剪裁，适应现代都市生活的优雅。', angle: 45 },
+    { id: 'accessories', label: '服饰', icon: '饰', title: '锦上添花 · 配饰系列', description: '披肩、手包、绣鞋，点睛之笔。', angle: 135 },
+    { id: 'youth', label: '少年', icon: '竹', title: '翩翩少年 · 男士系列', description: '儒雅长衫与现代马褂的碰撞。', angle: 225 },
+    { id: 'maiden', label: '少女', icon: '兰', title: '豆蔻年华 · 少女系列', description: '清新灵动，展现青春东方韵味。', angle: 315 },
+]
+
+const isOpen = ref(false)
+const activeCategory = ref<string | null>(null)
+
+const activeItem = computed(() => {
+    return [...innerCategories, ...outerCategories].find(c => c.id === activeCategory.value)
+})
+
+const toggleOpen = () => {
+    isOpen.value = !isOpen.value
+    if (!isOpen.value) {
+        activeCategory.value = null
+    }
+}
+
+const selectCategory = (item: Category) => {
+    if (!isOpen.value) return
+    activeCategory.value = item.id
+}
+
+const enterCategory = () => {
+    if (activeCategory.value) {
+        // 实际项目中这里会跳转路由或滚动
+        console.log(`Entering ${activeCategory.value}`)
+        const element = document.getElementById(activeCategory.value)
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+    }
+}
+</script>
+
+<style scoped>
+.bagua-section {
+    position: relative;
+    padding: var(--spacing-2xl) 0;
+    min-height: 800px;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #fcfcfa 0%, #f0f0eb 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-title {
+    font-size: var(--text-4xl);
+    background: linear-gradient(135deg, var(--color-primary-red) 0%, var(--color-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--spacing-xs);
+}
+
+.section-subtitle {
+    font-family: var(--font-serif-cn);
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+}
+
+/* 罗盘容器 */
+.nav-compass-container {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.8s var(--ease-out-cubic);
+}
+
+/* 星宿背景 */
+.constellation-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.nav-compass-container.is-open .constellation-bg {
+    opacity: 1;
+}
+
+.constellation-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.orbit-ring {
+    fill: none;
+    stroke: var(--color-gold);
+    stroke-width: 1;
+    stroke-opacity: 0.1;
+    stroke-dasharray: 4 4;
+    transform-origin: center;
+    animation: spin-slow 60s linear infinite;
+}
+
+.outer-orbit { animation-duration: 80s; animation-direction: reverse; }
+
+.constellation-line {
+    stroke: var(--color-gold);
+    stroke-width: 1;
+    stroke-opacity: 0.3;
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: drawLine 0.8s var(--ease-out-cubic) forwards;
+    animation-delay: var(--delay);
+}
+
+@keyframes drawLine {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 环层 */
+.ring-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none; /* 让点击穿透到 item */
+    z-index: 5;
+}
+
+/* 导航项 */
+.nav-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    margin-left: -40px;
+    margin-top: -40px;
+    pointer-events: auto;
+    cursor: pointer;
+    
+    /* 核心定位逻辑 */
+    transform: rotate(var(--angle)) translateX(0) rotate(calc(-1 * var(--angle)));
+    opacity: 0;
+    transition: all 0.6s var(--ease-out-cubic);
+    transition-delay: var(--delay);
+}
+
+.nav-compass-container.is-open .nav-item {
+    transform: rotate(var(--angle)) translateY(calc(-1 * var(--distance))) rotate(calc(-1 * var(--angle)));
+    opacity: 1;
+}
+
+.item-content {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.nav-item:hover .item-content,
+.nav-item.active .item-content {
+    background: var(--color-primary-red);
+    border-color: var(--color-gold);
+    transform: scale(1.15);
+    box-shadow: var(--shadow-glow);
+}
+
+.item-icon {
+    font-size: 1.5rem;
+    margin-bottom: 2px;
+    color: var(--color-text-primary);
+    transition: color 0.3s;
+}
+
+.item-label {
+    font-size: 0.75rem;
+    font-family: var(--font-serif-cn);
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-item:hover .item-icon, .nav-item:hover .item-label,
+.nav-item.active .item-icon, .nav-item.active .item-label {
+    color: var(--color-gold);
+}
+
+/* 中心控制 (Lid) */
+.center-control {
+    position: absolute;
+    z-index: 20;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.center-lid {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary-red) 0%, #5a101d 100%);
+    box-shadow: 0 10px 30px rgba(139, 26, 47, 0.4);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    transition: all 0.6s var(--ease-out-cubic);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-compass-container.is-open .center-lid {
+    transform: rotate(180deg);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+    border-color: var(--color-gold);
+}
+
+.lid-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-gold);
+    transition: transform 0.6s var(--ease-out-cubic);
+}
+
+.nav-compass-container.is-open .lid-content {
+    transform: rotate(-180deg); /* 保持文字正向 */
+}
+
+.logo-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.lid-hint {
+    font-size: 0.7rem;
+    opacity: 0.8;
+    margin-top: 4px;
+}
+
+.center-glow {
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    border: 1px solid var(--color-gold);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.6s ease;
+    pointer-events: none;
+}
+
+.center-control:hover .center-glow {
+    opacity: 0.5;
+    transform: scale(1.1);
+}
+
+.nav-compass-container.is-open .center-glow {
+    animation: pulse-ring 3s infinite;
+    opacity: 0.3;
+}
+
+/* 详情卡片 */
+.category-detail {
+    position: absolute;
+    bottom: -60px; /* 调整位置 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    z-index: 30;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: var(--shadow-float);
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    color: var(--color-primary-red);
+}
+
+.detail-icon { font-size: 1.2rem; }
+.detail-title { font-size: 1.1rem; font-weight: 600; }
+
+.detail-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.enter-btn {
+    background: var(--color-primary-red);
+    color: white;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s;
+}
+
+.enter-btn:hover {
+    background: var(--color-primary-red-dark);
+    transform: translateY(-2px);
+}
+
+/* 动画 */
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+    transition: all 0.4s ease;
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.1; }
+    100% { transform: scale(1); opacity: 0.3; }
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .nav-compass-container {
+        width: 340px;
+        height: 340px;
+    }
+
+    .nav-item {
+        width: 60px;
+        height: 60px;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+
+    .item-icon { font-size: 1.2rem; }
+    .item-label { font-size: 0.65rem; }
+
+    /* 调整移动端距离 */
+    .nav-compass-container.is-open .inner-item {
+        transform: rotate(var(--angle)) translateY(-90px) rotate(calc(-1 * var(--angle)));
+    }
+    
+    .nav-compass-container.is-open .outer-item {
+        transform: rotate(var(--angle)) translateY(-150px) rotate(calc(-1 * var(--angle)));
+    }
+
+    /* 调整连线长度 (SVG) - 这里用 CSS 覆盖比较难，通常需要 JS 动态计算，
+       或者简单地隐藏连线，保持简洁 */
+    .constellation-bg {
+        display: none; /* 移动端隐藏复杂连线，保持清晰 */
+    }
+
+    .category-detail {
+        width: 90%;
+        bottom: -100px;
+    }
+}
+</style>
