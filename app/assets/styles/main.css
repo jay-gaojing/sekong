@@ -1,0 +1,210 @@
+/* 旗袍数据库 - UI/UX Pro Max Design System */
+/* Style: Heritage Modern Luxury (东方美学 · 现代奢华) */
+
+/* ==================== Font Import ==================== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Ma+Shan+Zheng&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* ==================== Design Tokens ==================== */
+:root {
+  /* --- Palette: Imperial Elegance (HSL) --- */
+  /* Primary Red: Deep, rich, like lacquer */
+  --hue-red: 355;
+  --color-primary-red: hsl(var(--hue-red), 48%, 32%);
+  --color-primary-red-light: hsl(var(--hue-red), 48%, 42%);
+  --color-primary-red-dark: hsl(var(--hue-red), 50%, 20%);
+
+  /* Gold: Metallic, shimmering */
+  --hue-gold: 42;
+  --color-gold: hsl(var(--hue-gold), 58%, 52%);
+  --color-gold-light: hsl(var(--hue-gold), 68%, 65%);
+  --color-gold-dim: hsl(var(--hue-gold), 30%, 35%);
+  --color-gold-gradient: linear-gradient(135deg, hsl(42, 58%, 52%) 0%, hsl(45, 70%, 70%) 50%, hsl(42, 58%, 52%) 100%);
+
+  /* Secondary: Jade Green & Porcelain Blue */
+  --color-jade: hsl(158, 35%, 28%);
+  --color-porcelain: hsl(200, 25%, 65%);
+
+  /* Neutrals: Warm, paper-like -> Updated to Porcelain/Jade White */
+  --color-cream: hsl(40, 10%, 98%);
+  --color-cream-dim: hsl(40, 8%, 94%);
+  --color-charcoal: hsl(240, 5%, 15%);
+  --color-ink: hsl(240, 5%, 10%);
+
+  /* Backgrounds */
+  /* Shift from "Suet Jade" to "Heritage Khaki" as per design sketch */
+  --color-bg-main: #F0EAD6; /* Classic Khaki / Eggshell */
+  --color-bg-paper: #E6DFCF;
+  --color-bg-dark: var(--color-charcoal);
+
+  /* Text */
+  --color-text-primary: var(--color-ink);
+  --color-text-secondary: hsl(30, 5%, 40%);
+  --color-text-muted: hsl(30, 5%, 60%);
+
+  /* --- Typography --- */
+  --font-serif-cn: 'Noto Serif SC', serif;
+  --font-serif-en: 'Playfair Display', serif; /* For English headings */
+  --font-sans: 'Noto Sans SC', sans-serif;
+  --font-decorative: 'Ma Shan Zheng', cursive;
+
+  /* Fluid Typography */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: clamp(1.875rem, 2vw + 1rem, 2.25rem);
+  --text-4xl: clamp(2.25rem, 3vw + 1rem, 3rem);
+  --text-display: clamp(3rem, 5vw + 1rem, 5rem);
+
+  /* --- Spacing & Layout --- */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2.5rem;
+  --spacing-xl: 4rem;
+  --spacing-2xl: 6rem;
+  
+  --container-width: 1440px;
+  --header-height: 90px;
+
+  /* --- Effects --- */
+  /* Shadows: Layered for realism */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+  --shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.2);
+  
+  /* Borders */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-full: 9999px;
+
+  /* Transitions */
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.2s var(--ease-out-cubic);
+  --transition-normal: 0.4s var(--ease-out-cubic);
+  --transition-slow: 0.7s var(--ease-out-cubic);
+}
+
+/* ==================== Reset & Base ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Texture Overlay - Reduced Opacity for Cleaner Look */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: overlay; /* Changed from multiply to overlay for lighter effect */
+  opacity: 0.4; /* Reduced opacity */
+}
+
+/* ==================== Typography System ==================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif-cn);
+  color: var(--color-primary-red);
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.font-serif-en { font-family: var(--font-serif-en); }
+.font-decorative { font-family: var(--font-decorative); }
+
+/* ==================== Utility Classes ==================== */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(252, 252, 250, 0.85); /* Whiter base, higher opacity for cleaner look */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03); /* More subtle border */
+}
+
+.glass-dark {
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Text Gradients */
+.text-gradient-gold {
+  background: var(--color-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.8s var(--ease-out-cubic) forwards;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-primary-red);
+  color: var(--color-gold);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-red);
+}
