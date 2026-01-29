@@ -39,7 +39,7 @@
 
         <!-- Links: 传承谱系 | 关于我们 -->
         <div class="nav-links">
-          <NuxtLink to="/#heritage" class="nav-link">
+          <NuxtLink to="/crafts" class="nav-link">
             <span class="link-text">传承谱系</span>
           </NuxtLink>
           <NuxtLink to="#about" class="nav-link">
