@@ -8,32 +8,14 @@
 
     <!-- 主内容区 -->
     <main class="main-content">
-      <!-- 数据库展示区域 -->
-      <DatabaseSection />
-
-      <!-- 旗袍传承视频区域 -->
-      <HeritageVideo />
-
-      <!-- 八卦导航盘 -->
-      <BaguaNav />
-
-      <!-- 盘扣入口区域 -->
-      <PankouSection />
-
-      <!-- 色控展览入口区域 -->
-      <SeKongSection />
-
-      <!-- 旗袍样式与派系区域 -->
-      <StylesSection />
-
-      <!-- 图片展示区域 -->
-      <GallerySection />
+      <!-- 路由出口：根据 URL 显示 pages/ 下的对应组件 -->
+      <NuxtPage />
 
       <!-- 页脚 -->
       <footer class="site-footer">
         <div class="footer-container">
           <div class="footer-grid">
-            <div class="footer-col animate-fade-up">
+            <div class="footer-col animate-fade-up" id="about">
               <h3 class="footer-title">关于我们</h3>
               <p class="footer-text">
                 致力于保护和传承旗袍这一珍贵的非物质文化遗产。
@@ -84,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-// 导入样式
+// 导入全局样式
 import '~/assets/styles/main.css'
 </script>
 
@@ -103,6 +85,8 @@ import '~/assets/styles/main.css'
   /* 为侧边导航留出空间 */
   min-height: 100vh;
   transition: padding var(--transition-normal);
+  display: flex;
+  flex-direction: column;
 }
 
 /* ==================== 页脚样式 ==================== */
@@ -112,6 +96,7 @@ import '~/assets/styles/main.css'
   padding: var(--spacing-2xl) 0 var(--spacing-lg);
   position: relative;
   border-top: 1px solid rgba(212, 175, 55, 0.1);
+  margin-top: auto; /* Push to bottom if content is short */
 }
 
 .footer-container {

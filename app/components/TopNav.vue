@@ -39,12 +39,12 @@
 
         <!-- Links: 传承谱系 | 关于我们 -->
         <div class="nav-links">
-          <a href="#heritage" class="nav-link">
+          <NuxtLink to="/#heritage" class="nav-link">
             <span class="link-text">传承谱系</span>
-          </a>
-          <a href="#about" class="nav-link">
+          </NuxtLink>
+          <NuxtLink to="#about" class="nav-link">
             <span class="link-text">关于我们</span>
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -202,7 +202,7 @@ const toggleLanguage = () => {
   opacity: 0;
 }
 
-</script>
+</style>
 
 <style scoped>
 .top-nav {

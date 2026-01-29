@@ -59,6 +59,10 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
 
 interface NavItem {
   id: string
@@ -114,14 +118,32 @@ const constellationPath = computed(() => {
   return path
 })
 
-const activeItem = ref<string>('styles')
+const activeItem = ref<string>('yan') // Default to 'yan'
 const hoveredItem = ref<string | null>(null)
 
-const handleNavClick = (id: string) => {
+const handleNavClick = async (id: string) => {
   activeItem.value = id
-  const element = document.getElementById(id)
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  
+  if (id === 'styles') {
+    await router.push('/styles')
+  } else {
+    // Check if we need to navigate to home first
+    if (route.path !== '/') {
+      await router.push('/')
+      // Wait for navigation and mount
+      setTimeout(() => {
+        const element = document.getElementById(id)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }, 300)
+    } else {
+      // Already on home
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
   }
 }
 </script>
