@@ -186,28 +186,26 @@ const navigateToDetail = (id: string, type: string) => {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: var(--color-primary-red);
+  background: url('/images/旗袍样式（传，现）二字的边框.jpg') no-repeat center center;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   box-shadow: var(--shadow-float);
-  border: 4px solid var(--color-gold);
+  /* Remove old border and bg color */
 }
 
 .circle-text {
   font-size: 5rem;
-  color: var(--color-gold);
+  color: var(--color-primary-red); /* Adjusted for likely light background inside border */
   z-index: 2;
+  font-weight: bold;
 }
 
 .circle-decoration {
-  position: absolute;
-  width: 110%;
-  height: 110%;
-  border: 1px dashed var(--color-primary-red-light);
-  border-radius: 50%;
-  animation: spin 20s linear infinite;
+  /* Hide CSS decoration as image has it */
+  display: none;
 }
 
 @keyframes spin {

@@ -309,18 +309,41 @@ const enterCategory = () => {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(212, 175, 55, 0.4);
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.6);
+    /* 应用八字边框背景 */
+    background: url('/images/其余八个字的边框.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 遮罩层确保文字清晰 */
+.item-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    z-index: 0;
+    transition: opacity 0.3s;
+}
+
+.item-content > * {
+    position: relative;
+    z-index: 1;
 }
 
 .nav-item:hover .item-content,
 .nav-item.active .item-content {
-    background: var(--color-primary-red);
     border-color: var(--color-gold);
     transform: scale(1.15);
     box-shadow: var(--shadow-glow);
+}
+
+.nav-item:hover .item-content::before,
+.nav-item.active .item-content::before {
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .item-icon {

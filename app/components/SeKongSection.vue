@@ -4,25 +4,10 @@
             <div class="sekong-grid">
                 <!-- 左侧：视觉展示 -->
                 <div class="sekong-visual">
-                    <div class="color-wheel">
-                        <div v-for="(color, index) in colorPalette" :key="index" class="color-segment" :style="{
-                            '--color': color.hex,
-                            '--delay': `${index * 0.1}s`,
-                            transform: `rotate(${index * 60}deg)`
-                        }">
-                            <div class="segment-fill"></div>
-                        </div>
-                        <div class="wheel-center">
-                            <span class="center-text">色</span>
-                        </div>
-                    </div>
-
-                    <!-- 颜色标签 -->
-                    <div class="color-tags">
-                        <span v-for="(color, index) in colorPalette" :key="index" class="color-tag"
-                            :style="{ '--tag-color': color.hex }">
-                            {{ color.name }}
-                        </span>
+                    <div class="template-showcase">
+                        <img src="/images/色控原创的模板.jpg" alt="色控原创设计" class="template-img">
+                        <!-- 装饰性光效 -->
+                        <div class="template-shine"></div>
                     </div>
                 </div>
 
@@ -120,95 +105,48 @@ const colorPalette: ColorInfo[] = [
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-lg);
+    justify-content: center;
 }
 
-.color-wheel {
+.template-showcase {
     position: relative;
-    width: 320px;
-    height: 320px;
-}
-
-.color-segment {
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    top: 0;
-    left: 50%;
-    transform-origin: 0% 100%;
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--border-radius-lg);
     overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    border: 4px solid white;
+    transform: rotate(-3deg);
+    transition: transform var(--transition-normal);
 }
 
-.segment-fill {
+.template-showcase:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.template-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.template-shine {
     position: absolute;
-    width: 200%;
-    height: 200%;
     top: 0;
     left: -100%;
-    background: var(--color);
-    border-radius: 50%;
-    transform-origin: 50% 100%;
-    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-    opacity: 0.85;
-    transition: all var(--transition-normal);
-    animation: fadeIn 0.6s var(--delay) both;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+    transform: skewX(-25deg);
+    animation: shine 6s infinite;
 }
 
-.color-segment:hover .segment-fill {
-    opacity: 1;
-    transform: scale(1.05);
+@keyframes shine {
+    0%, 50% { left: -100%; }
+    100% { left: 200%; }
 }
 
-.wheel-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-lg);
-    z-index: 10;
-}
-
-.center-text {
-    font-family: var(--font-serif-cn);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--color-primary-red);
-}
-
-.color-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    justify-content: center;
-}
-
-.color-tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 14px;
-    background: white;
-    border-radius: var(--border-radius-full);
-    font-family: var(--font-serif-cn);
-    font-size: 0.85rem;
-    color: var(--tag-color);
-    border: 1px solid var(--tag-color);
-    box-shadow: var(--shadow-sm);
-    transition: all var(--transition-fast);
-    cursor: pointer;
-}
-
-.color-tag:hover {
-    background: var(--tag-color);
-    color: white;
-    transform: translateY(-2px);
-}
+/* Remove old color wheel styles */
 
 /* 右侧内容 */
 .section-header {

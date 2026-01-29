@@ -83,15 +83,17 @@
 .database-section {
   padding-top: var(--spacing-2xl);
   padding-bottom: var(--spacing-xl);
-  /* Reduced from 2xl to xl to reduce gap */
   min-height: auto;
-  /* Remove min-height: 100vh constraint */
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
   z-index: 2;
-  /* Ensure it stays above the video section background if needed */
+  /* 背景图片设置 */
+  background-image: url('/images/米汤骄（大背景）.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .bg-decoration-text {

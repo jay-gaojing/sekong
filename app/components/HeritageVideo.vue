@@ -234,11 +234,12 @@ const playVideo = () => {
 
 /* Play Button */
 .play-btn {
-  width: 80px;
-  height: 80px;
+  width: 100px; /* Increased size for pattern visibility */
+  height: 100px;
   border-radius: 50%;
-  background: transparent;
-  border: none;
+  background: url('/images/旗袍工艺部分上的圆圈上面的纹样.jpg') no-repeat center center;
+  background-size: cover;
+  border: 2px solid rgba(255,255,255,0.5);
   position: relative;
   cursor: pointer;
   display: flex;
@@ -246,23 +247,18 @@ const playVideo = () => {
   justify-content: center;
   color: white;
   margin-bottom: var(--spacing-md);
-}
-
-.btn-ring {
-  position: absolute;
-  inset: 0;
-  border: 2px solid white;
-  border-radius: 50%;
-  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-}
-
-.btn-fill {
-  position: absolute;
-  inset: 5px;
-  background: rgba(212, 175, 55, 0.8);
-  border-radius: 50%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   transition: transform var(--transition-normal);
 }
+
+.play-btn:hover {
+  transform: scale(1.1);
+  border-color: var(--color-gold);
+}
+
+/* Hide original simple styles */
+.btn-ring { display: none; }
+.btn-fill { display: none; }
 
 .play-icon {
   width: 30px;

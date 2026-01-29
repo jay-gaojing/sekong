@@ -55,27 +55,27 @@
                 <div class="pankou-visual">
                     <div class="visual-grid">
                         <div class="pankou-card card-main">
+                            <img src="/images/花卉扣卡背.jpg" alt="蝴蝶扣" class="card-bg-img">
                             <div class="card-inner">
-                                <span class="pankou-emoji">🔘</span>
                                 <span class="card-label">蝴蝶扣</span>
                             </div>
                             <div class="card-glow"></div>
                         </div>
                         <div class="pankou-card card-sm">
+                            <img src="/images/吉祥扣卡背.jpg" alt="琵琶扣" class="card-bg-img">
                             <div class="card-inner">
-                                <span class="pankou-emoji">🎀</span>
                                 <span class="card-label">琵琶扣</span>
                             </div>
                         </div>
                         <div class="pankou-card card-sm">
+                            <img src="/images/昆虫类的卡背.jpg" alt="梅花扣" class="card-bg-img">
                             <div class="card-inner">
-                                <span class="pankou-emoji">🌸</span>
                                 <span class="card-label">梅花扣</span>
                             </div>
                         </div>
                         <div class="pankou-card card-md">
+                            <img src="/images/其他扣卡背.jpg" alt="一字扣" class="card-bg-img">
                             <div class="card-inner">
-                                <span class="pankou-emoji">💎</span>
                                 <span class="card-label">一字扣</span>
                             </div>
                         </div>
@@ -232,13 +232,26 @@
     background: white;
     border-radius: var(--border-radius-lg);
     display: flex;
-    align-items: center;
+    align-items: flex-end; /* Align label to bottom */
     justify-content: center;
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: all var(--transition-normal);
     cursor: pointer;
+}
+
+.card-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.pankou-card:hover .card-bg-img {
+    transform: scale(1.1);
 }
 
 .pankou-card:hover {
@@ -252,29 +265,24 @@
 }
 
 .card-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-sm);
+    justify-content: center;
 }
 
-.pankou-emoji {
-    font-size: 4rem;
-}
-
-.card-sm .pankou-emoji {
-    font-size: 2.5rem;
-}
-
-.card-md .pankou-emoji {
-    font-size: 3rem;
-}
+/* Remove old emoji styles */
+.pankou-emoji { display: none; }
 
 .card-label {
     font-family: var(--font-serif-cn);
     font-size: 1rem;
-    color: var(--color-text-primary);
+    color: white; /* Text needs to be white on image */
     font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .card-glow {
