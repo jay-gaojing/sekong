@@ -44,8 +44,22 @@
 
         <!-- The Gem Node -->
         <g class="gem-wrapper">
-          <circle class="gem-outer-ring" r="12" />
-          <circle class="gem-stone" r="6" />
+          <!-- Active State: Custom Icon Image -->
+          <image 
+            v-if="activeItem === item.id"
+            href="/images/nav-icon.png"
+            x="-25"
+            y="-25"
+            width="50"
+            height="50"
+            class="nav-icon-active"
+          />
+          
+          <!-- Inactive State: Default Gem Circles -->
+          <g v-else>
+            <circle class="gem-outer-ring" r="12" />
+            <circle class="gem-stone" r="6" />
+          </g>
         </g>
 
         <!-- Sub-item Indicator -->
@@ -225,6 +239,17 @@ onUnmounted(() => {
 .nav-node {
   cursor: pointer;
   transition: all var(--transition-normal);
+}
+
+/* Nav Icon Animation */
+.nav-icon-active {
+  animation: icon-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-origin: center;
+}
+
+@keyframes icon-pop {
+  0% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 /* Gem Styles */
