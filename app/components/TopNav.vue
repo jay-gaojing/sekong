@@ -6,7 +6,10 @@
         <div class="logo-wrapper">
           <div class="site-branding">
             <h1 class="site-title">
-              <span class="logo-mark">🏷️</span> <!-- 临时使用 emoji 模拟紫色圈+“商标” -->
+              <!-- Logo Mark: Purple Circle / Bagua -->
+              <div class="logo-mark-circle">
+                <span class="mark-text">商标</span>
+              </div>
               <span class="text-highlight">色控</span>
               <span class="text-cn">旗袍数据库</span>
               <span class="text-author font-serif-cn">颜 Q</span>
@@ -250,9 +253,22 @@ const toggleLanguage = () => {
   line-height: 1;
 }
 
-.logo-mark {
-  font-size: 1.2rem;
-  /* Adjust color/style to match purple circle later if needed */
+.logo-mark-circle {
+  width: 32px;
+  height: 32px;
+  background-color: #8b5cf6; /* Purple */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+  border: 2px solid var(--color-gold);
+}
+
+.mark-text {
+  font-size: 0.6rem;
+  color: white;
+  font-family: var(--font-serif-cn);
 }
 
 .text-highlight {

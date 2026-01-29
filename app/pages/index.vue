@@ -5,6 +5,9 @@
 
     <!-- 传承视频 -->
     <HeritageVideo />
+
+    <!-- 八卦导航盘 -->
+    <BaguaNav />
   </div>
 </template>
 

@@ -73,13 +73,16 @@
         </div>
       </div>
 
-      <!-- 板块三：详情展示区（以海派为例） -->
-      <div class="detail-section glass" v-if="activeDetail">
+      <!-- 板块三：详情展示区 -->
+      <div class="detail-section glass" v-if="activeDetail && currentDetail">
         <div class="detail-header">
-          <h2 class="detail-title font-serif-cn">四大派系之一 — <span class="highlight">海派</span></h2>
+          <h2 class="detail-title font-serif-cn">
+            <span v-if="['hai','jing','su','gang'].includes(currentDetail.id)">四大派系之一 — </span>
+            <span v-else>现代改良之一 — </span>
+            <span class="highlight">{{ currentDetail.title || currentDetail.name }}</span>
+          </h2>
           <p class="detail-desc font-serif-cn">
-            上世纪三十年代盛行上海。特点：时尚自由，中西合璧。
-            海派旗袍是传统与现代的完美融合，体现了当时上海女性追求解放、崇尚个性的精神风貌。
+            {{ currentDetail.desc || '暂无详细描述' }}
           </p>
         </div>
         
@@ -120,28 +123,17 @@
 import { ref } from 'vue'
 
 const activeHex = ref<string | null>(null)
-const activeDetail = ref(true) // Default show for demo
+const activeDetail = ref(false) // 默认隐藏详情，等待用户选择
+const currentDetail = ref<any>(null) // 存储当前选中的派系信息
 
 const chuanItems = [
-  { id: 'hai', name: '海' },
-  { id: 'jing', name: '京' },
-  { id: 'su', name: '苏' },
-  { id: 'gang', name: '港' }
+  { id: 'hai', name: '海', title: '海派', desc: '上世纪三十年代盛行上海。特点：时尚自由，中西合璧。海派旗袍是传统与现代的完美融合。' },
+  { id: 'jing', name: '京', title: '京派', desc: '风格矜持凝练，多用宽边，保留了更多旗人袍服的传统形制。' },
+  { id: 'su', name: '苏', title: '苏派', desc: '以刺绣见长，图案秀丽，色彩文雅，工艺精细。' },
+  { id: 'gang', name: '港', title: '港派', desc: '受西方文化影响较深，剪裁更加大胆，实用性强。' }
 ]
 
-const xianItems = [
-  { id: 'new', name: '新中式' },
-  { id: 'region', name: '地域' },
-  { id: 'guochao', name: '国潮' },
-  { id: 'select', name: '服选' }
-]
-
-const materials = [
-  { name: '棉 / 布', feature: '透气舒适，朴素自然', usage: '日常穿着，夏季' },
-  { name: '呢 / 绒', feature: '保暖挺括，质感厚重', usage: '秋冬季节，正式场合' },
-  { name: '丝 / 绸', feature: '光泽柔和，垂坠感好', usage: '宴会，礼仪，高端定制' },
-  { name: '针 / 织', feature: '弹性贴身，现代感强', usage: '休闲改良，日常通勤' }
-]
+// ... xianItems ...
 
 const handleHexClick = (item: any) => {
   if (activeHex.value === item.id) {
@@ -152,9 +144,21 @@ const handleHexClick = (item: any) => {
 }
 
 const navigateToDetail = (id: string, type: string) => {
-  console.log(`Navigate to ${id} - ${type}`)
-  // In a real app, this might scroll to detail or change route
-  activeDetail.value = true
+  // 查找对应的数据
+  const item = [...chuanItems, ...xianItems].find(i => i.id === id)
+  if (item) {
+    currentDetail.value = item
+    activeDetail.value = true
+    
+    // 平滑滚动到详情区
+    setTimeout(() => {
+      const detailSection = document.querySelector('.detail-section')
+      if (detailSection) {
+        detailSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+    }, 100)
+  }
+  activeHex.value = null // 关闭弹窗
 }
 </script>
 

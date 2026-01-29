@@ -199,15 +199,21 @@ watch(() => route.path, (newPath) => {
   transition: all var(--transition-normal);
 }
 
-/* Nav Icon Animation */
+/* Nav Icon Animation - Optimized to be less "weird" */
 .nav-icon-active {
-  animation: icon-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: icon-fade-in 0.3s ease-out forwards;
   transform-origin: center;
 }
 
-@keyframes icon-pop {
-  0% { opacity: 0; transform: scale(0.5); }
-  100% { opacity: 1; transform: scale(1); }
+@keyframes icon-fade-in {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.8); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
 }
 
 /* Gem Styles */
