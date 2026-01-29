@@ -1,10 +1,10 @@
 <template>
   <div class="home-page">
-    <!-- 数据库展示区域 (颜) -->
+    <!-- 简介（起源） -->
     <DatabaseSection />
 
-    <!-- 八卦导航盘 -->
-    <BaguaNav />
+    <!-- 传承视频 -->
+    <HeritageVideo />
   </div>
 </template>
 
