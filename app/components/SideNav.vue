@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
@@ -121,24 +121,21 @@ const constellationPath = computed(() => {
 const activeItem = ref<string>('yan') // Default to 'yan'
 const hoveredItem = ref<string | null>(null)
 
+// 导航点击处理逻辑
 const handleNavClick = async (id: string) => {
   activeItem.value = id
   
   if (id === 'styles') {
+    // 前往样式页
     await router.push('/styles')
   } else {
-    // Check if we need to navigate to home first
+    // 目标是首页的某个板块
     if (route.path !== '/') {
-      await router.push('/')
-      // Wait for navigation and mount
-      setTimeout(() => {
-        const element = document.getElementById(id)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
-      }, 300)
+      // 当前不在首页，直接跳转到首页对应锚点（利用 hash）
+      // 使用 hash 跳转可以避免手动 setTimeout 滚动，体验更像页面跳转
+      await router.push({ path: '/', hash: `#${id}` })
     } else {
-      // Already on home
+      // 已经在首页，进行平滑滚动定位
       const element = document.getElementById(id)
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -146,6 +143,64 @@ const handleNavClick = async (id: string) => {
     }
   }
 }
+
+// 滚动监听逻辑 (IntersectionObserver)
+let observer: IntersectionObserver | null = null
+
+const setupObserver = () => {
+  // 只在首页启用滚动监听
+  if (route.path !== '/') return
+
+  observer = new IntersectionObserver((entries) => {
+    // 找出当前可见度最高的元素
+    let maxRatio = 0
+    let maxId = ''
+    
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+        maxRatio = entry.intersectionRatio
+        maxId = entry.target.id
+      }
+    })
+
+    if (maxId) {
+      activeItem.value = maxId
+    }
+  }, {
+    threshold: [0.2, 0.5, 0.8], // 多级阈值确保灵敏度
+    rootMargin: '-20% 0px -20% 0px' // 缩小判定区域，聚焦屏幕中部
+  })
+
+  // 观察所有导航项对应的 DOM 元素
+  navItems.forEach(item => {
+    if (item.id === 'styles') return // 样式页不在首页观察范围内
+    const el = document.getElementById(item.id)
+    if (el) observer?.observe(el)
+  })
+}
+
+// 监听路由变化来更新 activeItem 和 Observer
+watch(() => route.path, (newPath) => {
+  if (newPath === '/styles') {
+    activeItem.value = 'styles'
+    observer?.disconnect() // 离开首页时断开观察
+  } else {
+    // 回到首页，稍作延迟等待 DOM 渲染后重新观察
+    setTimeout(setupObserver, 100)
+  }
+}, { immediate: true })
+
+onMounted(() => {
+  if (route.path === '/') {
+    setupObserver()
+  } else if (route.path === '/styles') {
+    activeItem.value = 'styles'
+  }
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
+})
 </script>
 
 <style scoped>
