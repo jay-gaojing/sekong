@@ -1,0 +1,25 @@
+﻿{
+    "history":  [
+                    "/home-planning/history/01.jpg",
+                    "/home-planning/history/02.jpg",
+                    "/home-planning/history/03.jpg",
+                    "/home-planning/history/04.jpg",
+                    "/home-planning/history/05.jpg",
+                    "/home-planning/history/06.jpg",
+                    "/home-planning/history/07.jpg",
+                    "/home-planning/history/08.jpg"
+                ],
+    "feature":  [
+                    "/home-planning/feature/01.jpg"
+                ],
+    "embroidery":  [
+                       "/home-planning/embroidery/01.jpg",
+                       "/home-planning/embroidery/02.jpg",
+                       "/home-planning/embroidery/03.jpg",
+                       "/home-planning/embroidery/04.jpg",
+                       "/home-planning/embroidery/05.jpg",
+                       "/home-planning/embroidery/06.jpg",
+                       "/home-planning/embroidery/07.jpg",
+                       "/home-planning/embroidery/08.jpg"
+                   ]
+}

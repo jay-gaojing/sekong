@@ -6,8 +6,11 @@
     <!-- 传承视频 -->
     <HeritageVideo />
 
-    <!-- 八卦导航盘 -->
-    <BaguaNav />
+    <!-- 首页规划素材：历史演变 / 刺绣纹样 / 展示图 -->
+    <HomePlanningSections />
+
+    <!-- 旗袍四大派系 -->
+    <HomeStyleSchoolsSection />
   </div>
 </template>
 

@@ -1,327 +1,310 @@
 <template>
-    <section id="sekong" class="sekong-section">
-        <div class="container">
-            <div class="sekong-grid">
-                <!-- 左侧：视觉展示 -->
-                <div class="sekong-visual">
-                    <div class="template-showcase">
-                        <img src="/images/色控原创的模板.jpg" alt="色控原创设计" class="template-img">
-                        <!-- 装饰性光效 -->
-                        <div class="template-shine"></div>
-                    </div>
-                </div>
+  <section id="sekong" class="sekong-section" aria-labelledby="color-title">
+    <header class="color-hero">
+      <p class="eyebrow">Qipao Color Archive</p>
+      <h1 id="color-title">色彩</h1>
+    </header>
 
-                <!-- 右侧：文字内容 -->
-                <div class="sekong-content">
-                    <header class="section-header">
-                        <span class="section-tag">色彩美学</span>
-                        <h2 class="section-title">
-                            <span class="text-gradient">色控</span>展览
-                        </h2>
-                        <div class="title-line"></div>
-                    </header>
+    <article
+      v-for="(series, seriesIndex) in colorSeries"
+      :key="series.id"
+      class="series-stage"
+      :class="`series-${series.id}`"
+    >
+      <div class="series-copy">
+        <span class="series-number">{{ String(seriesIndex + 1).padStart(2, '0') }}</span>
+        <p class="series-kicker">{{ series.title }}</p>
+        <h2>{{ series.subtitle }}</h2>
+        <p class="series-description">{{ series.description }}</p>
+      </div>
 
-                    <div class="sekong-intro">
-                        <p class="intro-text">
-                            旗袍的色彩是中华传统美学的精髓体现。从大红大紫的喜庆，
-                            到素雅青黛的含蓄，每一种色彩都承载着独特的文化寓意与情感表达。
-                        </p>
+      <div class="color-grid" :class="{ compact: series.images.length <= 6 }">
+        <button
+          v-for="(src, index) in series.images"
+          :key="src"
+          type="button"
+          class="color-card"
+          @click="openPreview(src, `${series.title}色彩素材 ${index + 1}`)"
+        >
+          <img :src="src" :alt="`${series.title}色彩素材 ${index + 1}`" loading="lazy" />
+        </button>
+      </div>
+    </article>
 
-                        <div class="color-categories">
-                            <div class="category-item">
-                                <div class="category-icon" style="--cat-color: #C8102E;">红</div>
-                                <div class="category-info">
-                                    <h4>红韵</h4>
-                                    <p>喜庆吉祥，热情奔放</p>
-                                </div>
-                            </div>
-                            <div class="category-item">
-                                <div class="category-icon" style="--cat-color: #1E3A5F;">蓝</div>
-                                <div class="category-info">
-                                    <h4>青黛</h4>
-                                    <p>典雅沉静，知性内敛</p>
-                                </div>
-                            </div>
-                            <div class="category-item">
-                                <div class="category-icon" style="--cat-color: #D4AF37;">金</div>
-                                <div class="category-info">
-                                    <h4>金华</h4>
-                                    <p>尊贵华丽，雍容大气</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="explore-btn group">
-                        <span>进入色控展览</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+    <Teleport to="body">
+      <transition name="fade">
+        <div v-if="previewImage" class="lightbox-overlay" @click="closePreview">
+          <button class="lightbox-close" type="button" aria-label="关闭预览" @click.stop="closePreview">
+            <span aria-hidden="true">×</span>
+          </button>
+          <img :src="previewImage" :alt="previewAlt" class="lightbox-img" @click.stop />
         </div>
-
-        <!-- 背景装饰 -->
-        <div class="bg-decoration">
-            <div class="bg-gradient"></div>
-        </div>
-    </section>
+      </transition>
+    </Teleport>
+  </section>
 </template>
 
 <script setup lang="ts">
-interface ColorInfo {
-    name: string
-    hex: string
+import rawSeries from '../../public/images/color-series/color-series.json'
+
+interface ColorSeries {
+  id: string
+  title: string
+  subtitle: string
+  description: string
+  images: string[]
 }
 
-const colorPalette: ColorInfo[] = [
-    { name: '胭脂红', hex: '#C8102E' },
-    { name: '松柏绿', hex: '#2E5D4B' },
-    { name: '宝石蓝', hex: '#1E3A5F' },
-    { name: '藤黄', hex: '#D4AF37' },
-    { name: '黛紫', hex: '#6B3A6B' },
-    { name: '月白', hex: '#E8E4D9' }
-]
+const colorSeries = rawSeries as ColorSeries[]
+const previewImage = ref('')
+const previewAlt = ref('')
+
+const openPreview = (src: string, alt: string) => {
+  previewImage.value = src
+  previewAlt.value = alt
+
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = 'hidden'
+  }
+}
+
+const closePreview = () => {
+  previewImage.value = ''
+  previewAlt.value = ''
+
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = ''
+  }
+}
 </script>
 
 <style scoped>
 .sekong-section {
-    padding: var(--spacing-2xl) 0;
-    background: var(--color-bg-main);
-    position: relative;
-    overflow: hidden;
+  min-height: 100vh;
+  padding: 0 0 96px;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(194, 50, 70, 0.16), transparent 26%),
+    radial-gradient(circle at 8% 32%, rgba(202, 158, 76, 0.1), transparent 24%),
+    linear-gradient(180deg, rgba(167, 27, 45, 0.08), transparent 360px),
+    #050505;
+  color: #fff;
+  overflow: hidden;
 }
 
-.sekong-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-2xl);
-    align-items: center;
+.color-hero {
+  min-height: 48vh;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 18px;
+  width: min(1040px, calc(100% - 250px));
+  margin: 0 auto;
+  padding: 72px 0 56px;
+  text-align: center;
 }
 
-/* 左侧视觉 */
-.sekong-visual {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.eyebrow {
+  margin: 0;
+  color: #d7ad65;
+  font-family: var(--font-serif-en);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-.template-showcase {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-xl);
-    border: 4px solid white;
-    transform: rotate(-3deg);
-    transition: transform var(--transition-normal);
+.color-hero h1 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-serif-cn);
+  font-size: clamp(3rem, 8vw, 6.8rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1;
 }
 
-.template-showcase:hover {
-    transform: rotate(0deg) scale(1.02);
+.series-stage {
+  min-height: 100vh;
+  width: min(1180px, calc(100% - 300px));
+  margin: 0 auto;
+  transform: translateX(-34px);
+  padding: 84px 0 104px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.template-img {
-    width: 100%;
-    height: auto;
-    display: block;
+.series-copy {
+  position: relative;
+  max-width: 980px;
+  margin: 0 auto 44px;
+  padding: 0 20px;
+  text-align: center;
+  z-index: 1;
 }
 
-.template-shine {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
-    transform: skewX(-25deg);
-    animation: shine 6s infinite;
+.series-copy::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -22px;
+  width: 96px;
+  height: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, rgba(217, 179, 108, 0), #d9b36c, rgba(217, 179, 108, 0));
 }
 
-@keyframes shine {
-    0%, 50% { left: -100%; }
-    100% { left: 200%; }
+.series-number {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: rgba(255, 255, 255, 0.22);
+  font-family: var(--font-serif-en);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 0.8;
 }
 
-/* Remove old color wheel styles */
-
-/* 右侧内容 */
-.section-header {
-    margin-bottom: var(--spacing-lg);
+.series-kicker {
+  margin: 0 0 12px;
+  color: #d9b36c;
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
-.section-tag {
-    display: inline-block;
-    font-family: var(--font-serif-cn);
-    font-size: 0.85rem;
-    color: var(--color-gold);
-    background: rgba(212, 175, 55, 0.1);
-    padding: 4px 12px;
-    border-radius: var(--border-radius-full);
-    margin-bottom: var(--spacing-sm);
+.series-copy h2 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-serif-cn);
+  font-size: clamp(2.2rem, 4.6vw, 5rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.12;
 }
 
-.section-title {
-    font-size: var(--text-4xl);
-    line-height: 1.2;
+.series-description {
+  max-width: 920px;
+  margin: 24px auto 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: var(--font-serif-cn);
+  font-size: 1.04rem;
+  line-height: 1.95;
 }
 
-.text-gradient {
-    background: linear-gradient(135deg, var(--color-primary-red) 0%, var(--color-gold) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(190px, 1fr));
+  gap: clamp(14px, 1.35vw, 22px);
+  z-index: 1;
 }
 
-.title-line {
-    width: 60px;
-    height: 3px;
-    background: var(--color-gold);
-    margin-top: var(--spacing-sm);
+.color-grid.compact {
+  width: min(900px, 100%);
+  margin: 0 auto;
 }
 
-.intro-text {
-    font-size: 1.1rem;
-    color: var(--color-text-secondary);
-    line-height: 1.8;
-    margin-bottom: var(--spacing-lg);
+.color-card {
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 22px 42px rgba(0, 0, 0, 0.34);
+  cursor: zoom-in;
 }
 
-/* 颜色分类 */
-.color-categories {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+.color-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.28s ease, filter 0.28s ease;
 }
 
-.category-item {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
+.color-card:hover img {
+  transform: scale(1.04);
+  filter: saturate(1.08) contrast(1.03);
 }
 
-.category-icon {
-    width: 50px;
-    height: 50px;
-    background: var(--cat-color);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-serif-cn);
-    font-size: 1.2rem;
-    font-weight: 700;
-    flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.series-traditional .series-copy::before {
+  background: linear-gradient(180deg, #e1d6bc, rgba(225, 214, 188, 0));
 }
 
-.category-info h4 {
-    font-family: var(--font-serif-cn);
-    font-size: 1rem;
-    color: var(--color-text-primary);
-    margin-bottom: 2px;
+.series-dunhuang .series-copy::before {
+  background: linear-gradient(180deg, #b94d31, rgba(185, 77, 49, 0));
 }
 
-.category-info p {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
+.series-gugong .series-copy::before {
+  background: linear-gradient(180deg, #d2a141, rgba(210, 161, 65, 0));
 }
 
-/* 按钮 */
-.explore-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 28px;
-    background: linear-gradient(135deg, var(--color-gold) 0%, #c9a227 100%);
-    color: white;
-    border: none;
-    border-radius: var(--border-radius-sm);
-    font-family: var(--font-serif-cn);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all var(--transition-fast);
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(0, 0, 0, 0.9);
+  cursor: zoom-out;
 }
 
-.explore-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 22px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 50%;
+  background: rgba(18, 18, 18, 0.76);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.9rem;
+  line-height: 1;
 }
 
-.explore-btn svg {
-    width: 18px;
-    height: 18px;
-    transition: transform var(--transition-fast);
+.lightbox-img {
+  max-width: min(1120px, 94vw);
+  max-height: 90vh;
+  object-fit: contain;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.5);
 }
 
-.explore-btn:hover svg {
-    transform: translateX(4px);
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.22s ease;
 }
 
-/* 背景装饰 */
-.bg-decoration {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
-.bg-gradient {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    left: -100px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+@media (max-width: 980px) {
+  .series-stage {
+    min-height: auto;
+    width: min(760px, calc(100% - 32px));
+    transform: none;
+    padding: 58px 0;
+  }
+
+  .series-description {
+    max-width: none;
+  }
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
+@media (max-width: 560px) {
+  .color-hero {
+    width: min(100% - 28px, 720px);
+    padding: 46px 0 34px;
+  }
 
-    to {
-        opacity: 0.85;
-        transform: scale(1);
-    }
-}
+  .color-grid {
+    grid-template-columns: 1fr;
+  }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .sekong-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-
-    .sekong-visual {
-        order: 2;
-    }
-
-    .sekong-content {
-        order: 1;
-    }
-}
-
-@media (max-width: 768px) {
-    .color-wheel {
-        width: 250px;
-        height: 250px;
-    }
-
-    .wheel-center {
-        width: 60px;
-        height: 60px;
-    }
-
-    .center-text {
-        font-size: 1.5rem;
-    }
+  .color-card img {
+    aspect-ratio: 4 / 3;
+  }
 }
 </style>

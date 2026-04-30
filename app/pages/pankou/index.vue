@@ -5,13 +5,14 @@
 </template>
 
 <script setup lang="ts">
-// 旗袍盘扣页面
+useHead({
+  title: '?? - ???????',
+})
 </script>
 
 <style scoped>
 .page-container {
   min-height: 100vh;
-  padding-top: var(--header-height);
-  background-color: var(--color-bg-paper);
+  background: #050505;
 }
 </style>

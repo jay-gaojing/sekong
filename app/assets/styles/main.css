@@ -17,33 +17,32 @@
   --hue-gold: 42;
   --color-gold: hsl(var(--hue-gold), 58%, 52%);
   --color-gold-light: hsl(var(--hue-gold), 68%, 65%);
-  --color-gold-dim: hsl(var(--hue-gold), 30%, 35%);
+  --color-gold-dim: hsl(var(--hue-gold), 30%, 45%);
   --color-gold-gradient: linear-gradient(135deg, hsl(42, 58%, 52%) 0%, hsl(45, 70%, 70%) 50%, hsl(42, 58%, 52%) 100%);
 
   /* Secondary: Jade Green & Porcelain Blue */
-  --color-jade: hsl(158, 35%, 28%);
+  --color-jade: hsl(158, 45%, 45%);
   --color-porcelain: hsl(200, 25%, 65%);
 
-  /* Neutrals: Warm, paper-like -> Updated to Porcelain/Jade White */
-  --color-cream: hsl(40, 10%, 98%);
-  --color-cream-dim: hsl(40, 8%, 94%);
-  --color-charcoal: hsl(240, 5%, 15%);
-  --color-ink: hsl(240, 5%, 10%);
+  /* Neutrals: Dark theme */
+  --color-cream: hsl(0, 0%, 95%);
+  --color-cream-dim: hsl(0, 0%, 80%);
+  --color-charcoal: hsl(0, 0%, 8%);
+  --color-ink: hsl(0, 0%, 5%);
 
-  /* Backgrounds */
-  /* Shift from "Suet Jade" to "Heritage Khaki" as per design sketch */
-  --color-bg-main: #F0EAD6; /* Classic Khaki / Eggshell */
-  --color-bg-paper: #E6DFCF;
-  --color-bg-dark: var(--color-charcoal);
+  /* Backgrounds - 暗黑系 (柔和) */
+  --color-bg-main: #141414;
+  --color-bg-paper: #222222;
+  --color-bg-dark: #0a0a0a;
 
-  /* Text */
-  --color-text-primary: var(--color-ink);
-  --color-text-secondary: hsl(30, 5%, 40%);
-  --color-text-muted: hsl(30, 5%, 60%);
+  /* Text - 白色系 */
+  --color-text-primary: #f0f0f0;
+  --color-text-secondary: hsl(0, 0%, 70%);
+  --color-text-muted: hsl(0, 0%, 50%);
 
   /* --- Typography --- */
   --font-serif-cn: 'Noto Serif SC', serif;
-  --font-serif-en: 'Playfair Display', serif; /* For English headings */
+  --font-serif-en: 'Playfair Display', serif;
   --font-sans: 'Noto Sans SC', sans-serif;
   --font-decorative: 'Ma Shan Zheng', cursive;
 
@@ -67,15 +66,13 @@
   --spacing-2xl: 6rem;
   
   --container-width: 1440px;
-  --header-height: 90px;
-
+  --header-height: 110px;
   /* --- Effects --- */
-  /* Shadows: Layered for realism */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
-  --shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-  --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.2);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.3);
   
   /* Borders */
   --border-radius-sm: 4px;
@@ -125,14 +122,13 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: overlay; /* Changed from multiply to overlay for lighter effect */
-  opacity: 0.4; /* Reduced opacity */
+  mix-blend-mode: soft-light;
+  opacity: 0.15;
 }
-
 /* ==================== Typography System ==================== */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif-cn);
-  color: var(--color-primary-red);
+  color: var(--color-gold);
   line-height: 1.2;
   font-weight: 600;
 }
@@ -147,19 +143,19 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 var(--spacing-lg);
 }
 
-/* Glassmorphism */
+/* Glassmorphism - 暗色系 */
 .glass {
-  background: rgba(252, 252, 250, 0.85); /* Whiter base, higher opacity for cleaner look */
+  background: rgba(20, 20, 20, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.03); /* More subtle border */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .glass-dark {
-  background: rgba(20, 20, 20, 0.7);
+  background: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Text Gradients */
@@ -188,7 +184,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Selection */
 ::selection {
   background: var(--color-primary-red);
-  color: var(--color-gold);
+  color: var(--color-cream);
 }
 
 /* Scrollbar */
@@ -197,14 +193,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-paper);
+  background: #111;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-gold);
+  background: var(--color-gold-dim);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary-red);
+  background: var(--color-gold);
 }

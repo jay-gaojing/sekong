@@ -17,31 +17,31 @@
 
             <!-- 图片网格 -->
             <div class="gallery-grid">
-                <div v-for="(item, index) in galleryItems" :key="index" class="gallery-item"
+                <div v-for="(item, index) in getFilteredItems()" :key="index" class="gallery-item"
                     :class="[`item-${(index % 6) + 1}`]" @click="openPreview(item)">
                     <div class="item-inner">
-                        <div class="item-placeholder" :style="{ background: item.color }">
-                            <span class="placeholder-icon">{{ item.icon }}</span>
-                        </div>
+                        <img :src="item.image" :alt="item.title" class="item-image" loading="lazy">
                         <div class="item-overlay">
                             <h3 class="item-title">{{ item.title }}</h3>
-                            <span class="item-category">{{ item.category }}</span>
+                            <span class="item-category">{{ getCategoryLabel(item.category) }}</span>
                         </div>
                         <div class="item-hover-effect"></div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- 加载更多 -->
-            <div class="load-more">
-                <button class="load-btn">
-                    <span>探索更多</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 5v14M5 12l7 7 7-7" />
+        <!-- 图片预览 Lightbox -->
+        <transition name="fade">
+            <div v-if="previewImage" class="lightbox-overlay" @click="closePreview">
+                <button class="lightbox-close" aria-label="关闭预览" @click.stop="closePreview">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"></path>
                     </svg>
                 </button>
+                <img :src="previewImage" alt="预览图" class="lightbox-img" @click.stop />
             </div>
-        </div>
+        </transition>
     </section>
 </template>
 
@@ -56,41 +56,86 @@ interface FilterTab {
 interface GalleryItem {
     title: string
     category: string
-    icon: string
-    color: string
+    image: string
+    description?: string
 }
 
 const filterTabs: FilterTab[] = [
     { id: 'all', label: '全部' },
-    { id: 'classic', label: '经典款式' },
-    { id: 'embroidery', label: '刺绣纹样' },
-    { id: 'modern', label: '现代创新' },
-    { id: 'vintage', label: '民国风韵' }
+    { id: 'classic', label: '传统经典系列' },
+    { id: 'ai', label: '女士旗袍AI' },
+    { id: 'modern', label: '现代改良系列' }
 ]
 
 const activeFilter = ref('all')
 
-const galleryItems: GalleryItem[] = [
-    { title: '红缎绣花旗袍', category: '经典款式', icon: '👗', color: 'linear-gradient(135deg, #c8102e 0%, #8b1a2f 100%)' },
-    { title: '青花瓷纹样', category: '刺绣纹样', icon: '🏺', color: 'linear-gradient(135deg, #1e3a5f 0%, #2a4f7a 100%)' },
-    { title: '金丝牡丹绣', category: '刺绣纹样', icon: '🌸', color: 'linear-gradient(135deg, #d4af37 0%, #c9a227 100%)' },
-    { title: '月白素雅款', category: '经典款式', icon: '🌙', color: 'linear-gradient(135deg, #e8e4d9 0%, #d4d0c4 100%)' },
-    { title: '墨绿锦缎', category: '现代创新', icon: '🌿', color: 'linear-gradient(135deg, #2e5d4b 0%, #1f4035 100%)' },
-    { title: '民国海派风', category: '民国风韵', icon: '🎭', color: 'linear-gradient(135deg, #6b3a6b 0%, #4a2848 100%)' },
-    { title: '蝴蝶盘扣款', category: '经典款式', icon: '🦋', color: 'linear-gradient(135deg, #c8102e 0%, #d4af37 100%)' },
-    { title: '苏绣荷花', category: '刺绣纹样', icon: '🪷', color: 'linear-gradient(135deg, #f8b4b4 0%, #e88a8a 100%)' }
+const classicImages = [
+    { title: '暗花绒袖', image: '/images/colors/暗花绒袖.jpg' },
+    { title: '白络', image: '/images/colors/白络.jpg' },
+    { title: '碧涧蝶', image: '/images/colors/碧涧蝶.jpg' },
+    { title: '藏蓝锦年', image: '/images/colors/藏蓝锦年.jpg' },
+    { title: '茶烟褐', image: '/images/colors/茶烟褐.jpg' }
 ]
 
+const aiImages = [
+    { title: 'AI旗袍-1', image: '/images/colors/ai-1.jpg' },
+    { title: 'AI旗袍-2', image: '/images/colors/ai-2.jpg' },
+    { title: 'AI旗袍-3', image: '/images/colors/ai-3.jpg' },
+    { title: 'AI旗袍-4', image: '/images/colors/ai-4.jpg' },
+    { title: 'AI旗袍-5', image: '/images/colors/ai-5.jpg' }
+]
+
+const modernImages = [
+    { title: '夜航星', image: '/images/colors/夜航星.jpg' },
+    { title: '碧纹凝领', image: '/images/colors/碧纹凝领.jpg' },
+    { title: '藏枝', image: '/images/colors/藏枝.jpg' },
+    { title: '茶绿缠枝', image: '/images/colors/茶绿缠枝.jpg' },
+    { title: '赤绫流苏', image: '/images/colors/赤绫流苏.jpg' }
+]
+
+const galleryItems = ref<GalleryItem[]>([
+    ...classicImages.map(item => ({ ...item, category: 'classic' })),
+    ...aiImages.map(item => ({ ...item, category: 'ai' })),
+    ...modernImages.map(item => ({ ...item, category: 'modern' }))
+])
+
+const getFilteredItems = () => {
+    if (activeFilter.value === 'all') {
+        return galleryItems.value
+    }
+    return galleryItems.value.filter(item => item.category === activeFilter.value)
+}
+
+const previewImage = ref<string | null>(null)
+
 const openPreview = (item: GalleryItem) => {
-    console.log('Preview:', item.title)
-    // TODO: 实现图片预览功能
+    previewImage.value = item.image
+    if (typeof document !== 'undefined') {
+        document.body.style.overflow = 'hidden'
+    }
+}
+
+const closePreview = () => {
+    previewImage.value = null
+    if (typeof document !== 'undefined') {
+        document.body.style.overflow = ''
+    }
+}
+
+const getCategoryLabel = (category: string) => {
+    const labels: Record<string, string> = {
+        classic: '传统经典系列',
+        ai: '女士旗袍AI',
+        modern: '现代改良系列'
+    }
+    return labels[category] || category
 }
 </script>
 
 <style scoped>
 .gallery-section {
     padding: var(--spacing-2xl) 0;
-    background: var(--color-bg-paper);
+    background: var(--color-bg-dark);
     position: relative;
 }
 
@@ -132,7 +177,7 @@ const openPreview = (item: GalleryItem) => {
 
 .filter-btn {
     padding: 10px 24px;
-    background: white;
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--border-radius-full);
     font-family: var(--font-serif-cn);
@@ -185,6 +230,17 @@ const openPreview = (item: GalleryItem) => {
     width: 100%;
     height: 100%;
     position: relative;
+}
+
+.item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.gallery-item:hover .item-image {
+    transform: scale(1.1);
 }
 
 .item-placeholder {
@@ -244,51 +300,6 @@ const openPreview = (item: GalleryItem) => {
     background: rgba(200, 16, 46, 0.1);
 }
 
-/* 加载更多 */
-.load-more {
-    text-align: center;
-    margin-top: var(--spacing-xl);
-}
-
-.load-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 32px;
-    background: transparent;
-    border: 2px solid var(--color-gold);
-    border-radius: var(--border-radius-full);
-    font-family: var(--font-serif-cn);
-    font-size: 1rem;
-    color: var(--color-gold);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.load-btn:hover {
-    background: var(--color-gold);
-    color: white;
-    transform: translateY(-2px);
-}
-
-.load-btn svg {
-    width: 18px;
-    height: 18px;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(4px);
-    }
-}
-
 /* Responsive */
 @media (max-width: 1024px) {
     .gallery-grid {
@@ -312,5 +323,59 @@ const openPreview = (item: GalleryItem) => {
     .placeholder-icon {
         font-size: 2.5rem;
     }
+}
+
+/* Lightbox 样式 */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 10000;
+    padding: 8px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.lightbox-close:hover {
+    opacity: 1;
+}
+
+.lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: lightboxZoomIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes lightboxZoomIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
 }
 </style>

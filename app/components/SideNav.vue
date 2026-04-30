@@ -1,336 +1,170 @@
 <template>
-  <aside class="curve-nav">
-    <svg class="nav-svg" viewBox="0 0 240 700" xmlns="http://www.w3.org/2000/svg">
-      <!-- Gradient Definitions -->
-      <defs>
-        <linearGradient id="silkGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:var(--color-gold); stop-opacity:0.2" />
-          <stop offset="50%" style="stop-color:var(--color-primary-red); stop-opacity:0.5" />
-          <stop offset="100%" style="stop-color:var(--color-gold); stop-opacity:0.2" />
-        </linearGradient>
-
-        <radialGradient id="rubyGem" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
-          <stop offset="0%" style="stop-color:#ff6b6b" />
-          <stop offset="100%" style="stop-color:var(--color-primary-red)" />
-        </radialGradient>
-
-        <filter id="glow-gold">
-          <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-          <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
-      <!-- The Silk Path (Background Line) - 北斗七星样式 (折线连接) -->
-      <path class="nav-path-bg" :d="constellationPath" stroke="url(#silkGradient)" stroke-width="2" fill="none"
-        stroke-linecap="round" stroke-linejoin="round" />
-
-      <!-- Navigation Nodes -->
-      <g v-for="(item, index) in navItemsWithPositions" :key="item.id" class="nav-node" :class="{
-        'active': activeItem === item.id,
-        'has-sub': item.hasSub
-      }" :transform="`translate(${item.x}, ${item.y})`" @click="handleNavClick(item.id)"
-        @mouseenter="hoveredItem = item.id" @mouseleave="hoveredItem = null">
-        <!-- Connector Line (Invisible hit area) -->
-        <circle class="hit-area" r="24" fill="transparent" />
-
-        <!-- Label Group (Left side) -->
-        <g class="label-group" transform="translate(-30, 0)">
-          <rect class="label-bg" x="-80" y="-14" width="90" height="28" rx="4" />
-          <text class="nav-label" x="0" y="5" text-anchor="end">{{ item.label }}</text>
-        </g>
-
-        <!-- The Gem Node -->
-        <g class="gem-wrapper">
-          <!-- Active State: Custom Icon Image -->
-          <image 
-            v-if="activeItem === item.id"
-            href="/images/nav-icon.png"
-            x="-25"
-            y="-25"
-            width="50"
-            height="50"
-            class="nav-icon-active"
-          />
-          
-          <!-- Inactive State: Default Gem Circles -->
-          <g v-else>
-            <circle class="gem-outer-ring" r="12" />
-            <circle class="gem-stone" r="6" />
-          </g>
-        </g>
-
-        <!-- Sub-item Indicator -->
-        <g v-if="item.hasSub" class="sub-indicator" transform="translate(18, -18)">
-          <circle r="4" fill="var(--color-gold)" />
-        </g>
-      </g>
-    </svg>
+  <aside class="side-nav">
+    <nav class="nav-list">
+      <div
+        v-for="item in navItems"
+        :key="item.id"
+        class="nav-item"
+        :class="{ active: activeItem === item.id }"
+        @click="handleNavClick(item.id)"
+      >
+        <span class="nav-dot"></span>
+        <span class="nav-label">{{ item.label }}</span>
+      </div>
+    </nav>
   </aside>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-
-const router = useRouter()
-const route = useRoute()
+import { ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 interface NavItem {
   id: string
   label: string
-  hasSub?: boolean
 }
 
-interface NavItemWithPosition extends NavItem {
-  x: number
-  y: number
-}
+const router = useRouter()
+const route = useRoute()
 
-// 根据设计图更新导航项
 const navItems: NavItem[] = [
-  { id: 'yan', label: '颜' },
-  { id: 'original', label: '色控原创', hasSub: true },
-  { id: 'styles', label: '旗袍样式', hasSub: true },
-  { id: 'crafts', label: '旗袍工艺', hasSub: true },
-  { id: 'pankou', label: '旗袍盘扣', hasSub: true },
-  { id: 'colors', label: '旗袍色彩', hasSub: true },
-  { id: '3d-sim', label: '旗袍3D仿真' }
+  { id: 'yan', label: '首页' },
+  { id: 'original', label: '旗袍原创' },
+  { id: 'styles', label: '旗袍样式' },
+  { id: 'materials', label: '旗袍面料' },
+  { id: 'crafts', label: '旗袍工艺' },
+  { id: 'pankou', label: '旗袍盘扣' },
+  { id: 'colors', label: '旗袍色彩' },
+  { id: '3d-sim', label: '3D仿真' },
+  { id: 'cases', label: '传承谱系' },
+  { id: 'ip', label: '知识产权' },
 ]
 
-// 北斗七星坐标 (模拟真实的勺子形状 + 连线)
-const positions = [
-  // 斗勺部分 (Alpha, Beta, Gamma, Delta)
-  { x: 160, y: 100 }, // 1. 天枢 (Dubhe) - 颜
-  { x: 190, y: 160 }, // 2. 天璇 (Merak) - 色控原创
-  { x: 160, y: 240 }, // 3. 天玑 (Phecda) - 旗袍样式
-  { x: 120, y: 220 }, // 4. 天权 (Megrez) - 旗袍工艺 (勺柄连接处)
-
-  // 斗柄部分 (Epsilon, Zeta, Eta)
-  { x: 90, y: 300 },  // 5. 玉衡 (Alioth) - 旗袍盘扣
-  { x: 70, y: 380 },  // 6. 开阳 (Mizar) - 旗袍色彩
-  { x: 40, y: 480 }   // 7. 摇光 (Alkaid) - 旗袍3D仿真
-]
-
-const navItemsWithPositions = computed<NavItemWithPosition[]>(() => {
-  return navItems.map((item, index) => ({
-    ...item,
-    ...positions[index]
-  }))
-})
-
-// 生成折线路径
-const constellationPath = computed(() => {
-  if (positions.length === 0) return ''
-  const start = positions[0]
-  let path = `M ${start.x} ${start.y}`
-  for (let i = 1; i < positions.length; i++) {
-    path += ` L ${positions[i].x} ${positions[i].y}`
-  }
-  return path
-})
-
-const activeItem = ref<string>('yan') // Default to 'yan'
-const hoveredItem = ref<string | null>(null)
-
-// 路由映射表
 const routeMap: Record<string, string> = {
-  'yan': '/',
-  'original': '/original',
-  'styles': '/styles',
-  'crafts': '/crafts',
-  'pankou': '/pankou',
-  'colors': '/colors',
-  '3d-sim': '/simulation'
+  yan: '/',
+  original: '/original',
+  styles: '/styles',
+  materials: '/materials',
+  crafts: '/crafts',
+  pankou: '/pankou',
+  colors: '/colors',
+  '3d-sim': '/simulation',
+  cases: '/cases',
+  ip: '/ip',
 }
 
-// 反向映射：路径 -> ID
+const activeItem = ref('yan')
+
 const getActiveFromRoute = (path: string): string => {
   if (path === '/' || path === '') return 'yan'
   if (path.startsWith('/original')) return 'original'
   if (path.startsWith('/styles')) return 'styles'
+  if (path.startsWith('/materials')) return 'materials'
   if (path.startsWith('/crafts')) return 'crafts'
   if (path.startsWith('/pankou')) return 'pankou'
   if (path.startsWith('/colors')) return 'colors'
   if (path.startsWith('/simulation')) return '3d-sim'
+  if (path.startsWith('/heritage-ip')) return 'cases'
+  if (path.startsWith('/cases')) return 'cases'
+  if (path.startsWith('/ip')) return 'ip'
   return 'yan'
 }
 
-// 导航点击处理逻辑：纯路由跳转
 const handleNavClick = async (id: string) => {
   activeItem.value = id
   const targetPath = routeMap[id]
+
   if (targetPath) {
     await router.push(targetPath)
   }
 }
 
-// 监听路由变化来更新 activeItem
-watch(() => route.path, (newPath) => {
-  activeItem.value = getActiveFromRoute(newPath)
-}, { immediate: true })
-
-// 移除所有滚动监听逻辑 (IntersectionObserver)
+watch(
+  () => route.path,
+  (newPath) => {
+    activeItem.value = getActiveFromRoute(newPath)
+  },
+  { immediate: true },
+)
 </script>
 
 <style scoped>
-.curve-nav {
+.side-nav {
   position: fixed;
-  right: 1rem;
+  right: 2rem;
   top: 50%;
-  transform: translateY(-50%);
-  height: 600px;
-  width: 240px;
   z-index: 900;
-  pointer-events: none;
+  display: flex;
+  align-items: center;
+  transform: translateY(-50%);
 }
 
-.nav-svg {
-  width: 100%;
-  height: 100%;
-  pointer-events: auto;
-  overflow: visible;
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.nav-node {
+.nav-item {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px 8px 12px;
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
-  transition: all var(--transition-normal);
-}
-
-/* Nav Icon Animation - Optimized to be less "weird" */
-.nav-icon-active {
-  animation: icon-fade-in 0.3s ease-out forwards;
-  transform-origin: center;
-}
-
-@keyframes icon-fade-in {
-  0% { 
-    opacity: 0; 
-    transform: scale(0.8); 
-  }
-  100% { 
-    opacity: 1; 
-    transform: scale(1); 
-  }
-}
-
-/* Gem Styles */
-.gem-outer-ring {
-  fill: transparent;
-  stroke: var(--color-gold);
-  stroke-width: 1.5;
-  transition: all var(--transition-normal);
-  opacity: 0.6;
-}
-
-.gem-stone {
-  fill: var(--color-bg-paper);
-  stroke: var(--color-gold);
-  stroke-width: 2;
-  transition: all var(--transition-normal);
-}
-
-/* Label Styles */
-.label-group {
-  opacity: 0;
-  transform: translateX(10px) translate(-30px, 0);
-  transition: all var(--transition-normal);
-  pointer-events: none;
-}
-
-.label-bg {
-  fill: var(--color-primary-red);
-  opacity: 0;
   transition: all var(--transition-fast);
 }
 
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--color-gold);
+  border-radius: 50%;
+  background: transparent;
+  transition: all var(--transition-fast);
+}
+
+.nav-item:hover .nav-dot {
+  background: var(--color-gold);
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
+}
+
+.nav-item.active .nav-dot {
+  width: 10px;
+  height: 10px;
+  border-color: var(--color-gold);
+  background: var(--color-primary-red);
+  box-shadow: 0 0 10px rgba(200, 16, 46, 0.5);
+}
+
 .nav-label {
+  color: rgba(255, 255, 255, 0.5);
   font-family: var(--font-serif-cn);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.nav-item:hover .nav-label {
+  color: var(--color-gold);
+}
+
+.nav-item.active .nav-label {
+  color: var(--color-gold);
   font-size: 0.9rem;
-  fill: var(--color-gold);
-  font-weight: 600;
-}
-
-/* Hover State */
-.nav-node:hover .gem-outer-ring {
-  r: 16;
-  opacity: 1;
-  stroke: var(--color-primary-red);
-}
-
-.nav-node:hover .gem-stone {
-  fill: url(#rubyGem);
-  stroke: none;
-  r: 8;
-  filter: drop-shadow(0 0 4px rgba(200, 16, 46, 0.4));
-}
-
-.nav-node:hover .label-group {
-  opacity: 1;
-  transform: translateX(0) translate(-30px, 0);
-}
-
-/* Active State */
-.nav-node.active .gem-outer-ring {
-  r: 20;
-  stroke: var(--color-gold);
-  stroke-width: 2;
-  opacity: 1;
-  stroke-dasharray: 4 4;
-  animation: spin 10s linear infinite;
-}
-
-.nav-node.active .gem-stone {
-  fill: url(#rubyGem);
-  stroke: none;
-  r: 10;
-  filter: drop-shadow(0 0 8px rgba(200, 16, 46, 0.6));
-}
-
-.nav-node.active .label-group {
-  opacity: 1;
-}
-
-.nav-node.active .nav-label {
-  font-size: 1rem;
-  fill: var(--color-primary-red);
   font-weight: 700;
 }
 
-/* Sub Indicator */
-.sub-indicator circle {
-  animation: pulse 2s infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.6;
-    transform: scale(0.8);
-  }
-}
-
-/* Responsive */
 @media (max-width: 1200px) {
-  .curve-nav {
+  .side-nav {
     display: none;
   }
 }

@@ -1,17 +1,18 @@
 <template>
   <div class="page-container">
-    <GallerySection />
+    <SeKongSection />
   </div>
 </template>
 
 <script setup lang="ts">
-// 旗袍色彩页面
+useHead({
+  title: '色彩 - 色控旗袍数据库',
+})
 </script>
 
 <style scoped>
 .page-container {
   min-height: 100vh;
-  padding-top: var(--header-height);
-  background-color: var(--color-bg-main);
+  background: #e8e8e3;
 }
 </style>

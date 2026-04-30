@@ -26,9 +26,9 @@
     <div class="container relative z-10">
       <header class="section-header text-center">
         <h2 class="section-title text-gradient-gold">
-          旗袍的盛来与传承
+          龙凤旗袍手工制作技艺
         </h2>
-        <div class="title-sub">Heritage & Legacy</div>
+        <div class="title-sub">Longfeng Qipao Handmade Craftsmanship</div>
       </header>
 
       <div class="cinema-container">
@@ -36,8 +36,21 @@
         <div class="video-frame-wrapper group">
           <div class="video-frame-border"></div>
           <div class="video-placeholder">
-            <div class="video-overlay">
-              <button class="play-btn" @click="playVideo">
+            <!-- 视频播放器 -->
+            <video
+              v-if="isPlaying"
+              ref="videoRef"
+              class="video-player"
+              :src="videoSrc"
+              controls
+              preload="metadata"
+              playsinline
+              webkit-playsinline
+              @ended="onVideoEnded"
+            ></video>
+            <!-- 未播放时的封面 -->
+            <div v-else class="video-overlay" @click="playVideo">
+              <button class="play-btn">
                 <span class="btn-ring"></span>
                 <span class="btn-fill"></span>
                 <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -46,8 +59,8 @@
               </button>
               <div class="video-meta">
                 <span class="meta-tag">纪录片</span>
-                <h3 class="video-title">百年旗袍传承</h3>
-                <span class="meta-duration">12:35</span>
+                <h3 class="video-title">龙凤旗袍手工制作技艺</h3>
+                <span class="meta-duration">非遗影像</span>
               </div>
             </div>
             <!-- Faux scanlines -->
@@ -55,51 +68,30 @@
           </div>
         </div>
 
-        <!-- Film Strip (Highlights) -->
-        <div class="film-strip-container">
-          <div class="film-holes top"></div>
-          <div class="film-content">
-            <div class="film-frame" v-for="(item, index) in highlights" :key="index">
-              <div class="frame-inner">
-                <div class="frame-icon">{{ item.icon }}</div>
-                <h4 class="frame-title">{{ item.title }}</h4>
-                <p class="frame-desc">{{ item.description }}</p>
-                <div class="frame-number">0{{ index + 1 }}</div>
-              </div>
-            </div>
-          </div>
-          <div class="film-holes bottom"></div>
-        </div>
-      </div>
-
-      <div class="section-footer">
-        <a href="#text-version" class="text-link group">
-          <span class="link-text">阅读文字版</span>
-          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-interface Highlight {
-  icon: string
-  title: string
-  description: string
+const isPlaying = ref(false)
+const videoRef = ref<HTMLVideoElement | null>(null)
+const videoSrc = '/videos/heritage/longfeng-qipao-craft.mp4'
+
+const playVideo = async () => {
+  isPlaying.value = true
+
+  await nextTick()
+
+  try {
+    await videoRef.value?.play()
+  } catch (error) {
+    console.warn('Video playback was blocked or failed:', error)
+  }
 }
 
-const highlights: Highlight[] = [
-  { icon: '🎨', title: '工艺传承', description: '传统手工技艺的代代相传' },
-  { icon: '🧵', title: '精细刺绣', description: '苏绣、湘绣等传统绣法' },
-  { icon: '✨', title: '创新设计', description: '传统与现代的完美融合' },
-  { icon: '📜', title: '历史积淀', description: '百年旗袍的文化记忆' }
-]
-
-const playVideo = () => {
-  alert('Video playback feature coming soon.')
+const onVideoEnded = () => {
+  isPlaying.value = false
 }
 </script>
 
@@ -214,6 +206,15 @@ const playVideo = () => {
   align-items: center;
   justify-content: center;
   transition: background var(--transition-normal);
+  cursor: pointer;
+}
+
+.video-player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .video-frame-wrapper:hover .video-overlay {
@@ -322,12 +323,12 @@ const playVideo = () => {
 
 /* Film Strip */
 .film-strip-container {
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(255, 255, 255, 0.03);
   padding: 20px 0;
   position: relative;
   overflow-x: auto;
-  border-top: 2px dashed rgba(0, 0, 0, 0.1);
-  border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
+  border-top: 2px dashed rgba(255, 255, 255, 0.1);
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
 }
 
 .film-holes {
@@ -335,7 +336,7 @@ const playVideo = () => {
   left: 0;
   right: 0;
   height: 12px;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1) 50%, transparent 50%);
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.08) 50%, transparent 50%);
   background-size: 20px 100%;
 }
 
@@ -357,14 +358,14 @@ const playVideo = () => {
   flex: 0 0 250px;
   background: var(--color-bg-main);
   padding: var(--spacing-md);
-  border-left: 1px solid rgba(0, 0, 0, 0.05);
-  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
   position: relative;
   transition: background var(--transition-normal);
 }
 
 .film-frame:hover {
-  background: white;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .frame-icon {
@@ -390,7 +391,7 @@ const playVideo = () => {
   right: 10px;
   font-family: var(--font-serif-en);
   font-size: 3rem;
-  color: rgba(0, 0, 0, 0.03);
+  color: rgba(255, 255, 255, 0.04);
   line-height: 1;
 }
 
