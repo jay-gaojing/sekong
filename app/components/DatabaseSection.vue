@@ -327,14 +327,6 @@
     text-align: center;
   }
 
-  .pankou-heart-wrapper {
-    justify-content: center;
-  }
-
-  .divider-line {
-    margin-inline: auto;
-  }
-
   .quote-mark {
     left: 0;
   }
