@@ -7,7 +7,7 @@
           <div class="site-branding">
             <NuxtLink to="/" class="site-home-link" aria-label="返回首页">
             <h1 class="site-title">
-              <img src="/首页/logo.png" alt="Logo" class="site-logo-img" />
+              <img src="https://myvmail.us.ci/首页/logo.png" alt="Logo" class="site-logo-img" />
               <div class="site-text-info">
                 <span class="text-highlight">色控研究院</span>
                 <span class="text-en">SEKONG LAB</span>

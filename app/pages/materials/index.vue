@@ -16,17 +16,17 @@ interface PosterItem {
 }
 
 const posters: PosterItem[] = [
-  { id: 'lace-black', title: '黑色花卉纹蕾丝旗袍', image: '/images/materials/poster-01.jpg' },
-  { id: 'cinnabar-brocade', title: '大红地花卉枇杷纹印花提花缎旗袍', image: '/images/materials/poster-02.jpg' },
-  { id: 'orchid-georgette', title: '蓝白地提花剪花乔其纱旗袍', image: '/images/materials/poster-03.jpg' },
-  { id: 'wheat-lace', title: '鹅黄色炫彩亮丝麦穗纹蕾丝旗袍套装', image: '/images/materials/poster-04.jpg' },
-  { id: 'rose-velvet', title: '白地浅紫色玫瑰纹提花印花绒旗袍套装', image: '/images/materials/poster-05.jpg' },
-  { id: 'striped-woven', title: '条纹色织布旗袍', image: '/images/materials/poster-06.jpg' },
-  { id: 'tulip-georgette', title: '红色地郁金香纹印花乔其纱旗袍', image: '/images/materials/poster-07.jpg' },
-  { id: 'burnout-velvet', title: '棕色地蓝色花叶纹烂花绒旗袍', image: '/images/materials/poster-08.jpg' },
-  { id: 'chrysanthemum-velvet', title: '灰褐色菊花纹拷花绒旗袍', image: '/images/materials/poster-09.jpg' },
-  { id: 'material-note-a', title: '材质专题图文一', image: '/images/materials/poster-10.jpg' },
-  { id: 'material-note-b', title: '材质专题图文二', image: '/images/materials/poster-11.jpg' },
+  { id: 'lace-black', title: '黑色花卉纹蕾丝旗袍', image: 'https://myvmail.us.ci/images/materials/poster-01.jpg' },
+  { id: 'cinnabar-brocade', title: '大红地花卉枇杷纹印花提花缎旗袍', image: 'https://myvmail.us.ci/images/materials/poster-02.jpg' },
+  { id: 'orchid-georgette', title: '蓝白地提花剪花乔其纱旗袍', image: 'https://myvmail.us.ci/images/materials/poster-03.jpg' },
+  { id: 'wheat-lace', title: '鹅黄色炫彩亮丝麦穗纹蕾丝旗袍套装', image: 'https://myvmail.us.ci/images/materials/poster-04.jpg' },
+  { id: 'rose-velvet', title: '白地浅紫色玫瑰纹提花印花绒旗袍套装', image: 'https://myvmail.us.ci/images/materials/poster-05.jpg' },
+  { id: 'striped-woven', title: '条纹色织布旗袍', image: 'https://myvmail.us.ci/images/materials/poster-06.jpg' },
+  { id: 'tulip-georgette', title: '红色地郁金香纹印花乔其纱旗袍', image: 'https://myvmail.us.ci/images/materials/poster-07.jpg' },
+  { id: 'burnout-velvet', title: '棕色地蓝色花叶纹烂花绒旗袍', image: 'https://myvmail.us.ci/images/materials/poster-08.jpg' },
+  { id: 'chrysanthemum-velvet', title: '灰褐色菊花纹拷花绒旗袍', image: 'https://myvmail.us.ci/images/materials/poster-09.jpg' },
+  { id: 'material-note-a', title: '材质专题图文一', image: 'https://myvmail.us.ci/images/materials/poster-10.jpg' },
+  { id: 'material-note-b', title: '材质专题图文二', image: 'https://myvmail.us.ci/images/materials/poster-11.jpg' },
 ]
 
 const activePosterId = ref<string | null>(null)

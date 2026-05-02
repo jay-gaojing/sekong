@@ -76,7 +76,7 @@
 <script setup lang="ts">
 const isPlaying = ref(false)
 const videoRef = ref<HTMLVideoElement | null>(null)
-const videoSrc = '/videos/heritage/longfeng-qipao-craft.mp4'
+const videoSrc = 'https://myvmail.us.ci/videos/heritage/longfeng-qipao-craft.mp4'
 
 const playVideo = async () => {
   isPlaying.value = true
@@ -247,7 +247,7 @@ const onVideoEnded = () => {
   width: 100px; /* Increased size for pattern visibility */
   height: 100px;
   border-radius: 50%;
-  background: url('/images/旗袍工艺部分上的圆圈上面的纹样.jpg') no-repeat center center;
+  background: url('https://myvmail.us.ci/images/旗袍工艺部分上的圆圈上面的纹样.jpg') no-repeat center center;
   background-size: cover;
   border: 2px solid rgba(255,255,255,0.5);
   position: relative;

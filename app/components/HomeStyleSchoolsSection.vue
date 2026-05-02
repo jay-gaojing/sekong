@@ -43,10 +43,10 @@ interface School {
 }
 
 const schools: School[] = [
-  { id: 'su', code: 'SU', name: '苏派', image: '/images/style-schools/su/01.jpg', href: '/styles#su' },
-  { id: 'jing', code: 'JING', name: '京派', image: '/images/style-schools/jing/01.jpg', href: '/styles#jing' },
-  { id: 'hai', code: 'HAI', name: '海派', image: '/images/style-schools/hai/01.jpg', href: '/styles#hai' },
-  { id: 'yue', code: 'YUE', name: '粤派', image: '/images/style-schools/yue/01.jpg', href: '/styles#yue' },
+  { id: 'su', code: 'SU', name: '苏派', image: 'https://myvmail.us.ci/images/style-schools/su/01.jpg', href: '/styles#su' },
+  { id: 'jing', code: 'JING', name: '京派', image: 'https://myvmail.us.ci/images/style-schools/jing/01.jpg', href: '/styles#jing' },
+  { id: 'hai', code: 'HAI', name: '海派', image: 'https://myvmail.us.ci/images/style-schools/hai/01.jpg', href: '/styles#hai' },
+  { id: 'yue', code: 'YUE', name: '粤派', image: 'https://myvmail.us.ci/images/style-schools/yue/01.jpg', href: '/styles#yue' },
 ]
 
 const activeId = ref('su')

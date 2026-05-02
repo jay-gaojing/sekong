@@ -104,11 +104,11 @@ const assets = rawAssets as SimulationAssets
 const simulationImages = assets.images
 
 const processImages = [
-  { src: '/images/simulation-process/1-1.png', title: 'Style3D 制作流程 01' },
-  { src: '/images/simulation-process/1-2.png', title: 'Style3D 制作流程 02' },
-  { src: '/images/simulation-process/1-3.png', title: 'Style3D 制作流程 03' },
-  { src: '/images/simulation-process/1-4.png', title: 'Style3D 制作流程 04' },
-  { src: '/images/simulation-process/1-5.png', title: 'Style3D 制作流程 05' },
+  { src: 'https://myvmail.us.ci/images/simulation-process/1-1.png', title: 'Style3D 制作流程 01' },
+  { src: 'https://myvmail.us.ci/images/simulation-process/1-2.png', title: 'Style3D 制作流程 02' },
+  { src: 'https://myvmail.us.ci/images/simulation-process/1-3.png', title: 'Style3D 制作流程 03' },
+  { src: 'https://myvmail.us.ci/images/simulation-process/1-4.png', title: 'Style3D 制作流程 04' },
+  { src: 'https://myvmail.us.ci/images/simulation-process/1-5.png', title: 'Style3D 制作流程 05' },
 ]
 
 // Combine all images for unified preview

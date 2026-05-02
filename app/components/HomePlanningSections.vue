@@ -89,18 +89,18 @@ interface HomeAssets {
 
 const assets = rawAssets as HomeAssets
 const fabricImages = [
-  '/images/materials/cover.jpg',
-  '/images/materials/poster-01.jpg',
-  '/images/materials/poster-02.jpg',
-  '/images/materials/poster-03.jpg',
-  '/images/materials/poster-04.jpg',
-  '/images/materials/poster-05.jpg',
-  '/images/materials/poster-06.jpg',
-  '/images/materials/poster-07.jpg',
-  '/images/materials/poster-08.jpg',
-  '/images/materials/poster-09.jpg',
-  '/images/materials/poster-10.jpg',
-  '/images/materials/poster-11.jpg',
+  'https://myvmail.us.ci/images/materials/cover.jpg',
+  'https://myvmail.us.ci/images/materials/poster-01.jpg',
+  'https://myvmail.us.ci/images/materials/poster-02.jpg',
+  'https://myvmail.us.ci/images/materials/poster-03.jpg',
+  'https://myvmail.us.ci/images/materials/poster-04.jpg',
+  'https://myvmail.us.ci/images/materials/poster-05.jpg',
+  'https://myvmail.us.ci/images/materials/poster-06.jpg',
+  'https://myvmail.us.ci/images/materials/poster-07.jpg',
+  'https://myvmail.us.ci/images/materials/poster-08.jpg',
+  'https://myvmail.us.ci/images/materials/poster-09.jpg',
+  'https://myvmail.us.ci/images/materials/poster-10.jpg',
+  'https://myvmail.us.ci/images/materials/poster-11.jpg',
 ]
 const previewImage = ref('')
 </script>

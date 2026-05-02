@@ -73,7 +73,7 @@ const archiveSections: ArchiveSection[] = [
     description:
       '盘扣之美，首在于"型"。不同类型的盘扣，因内部结构、制作手法与使用部位的不同，呈现出截然不同的质感与性格。',
     images: Array.from({ length: 9 }, (_, index) => ({
-      src: `/images/pankou-archive/types/type-${String(index + 1).padStart(2, '0')}.jpg`,
+      src: `https://myvmail.us.ci/images/pankou-archive/types/type-${String(index + 1).padStart(2, '0')}.jpg`,
       alt: `盘扣类型 ${index + 1}`,
     })),
   },
@@ -85,7 +85,7 @@ const archiveSections: ArchiveSection[] = [
     description:
       '盘扣之美，又在于"形"。千百种造型，取法自然、器物与文字，每一种样式背后，都藏着一个吉祥的寓意。',
     images: Array.from({ length: 9 }, (_, index) => ({
-      src: `/images/pankou-archive/styles/style-${String(index + 1).padStart(2, '0')}.jpg`,
+      src: `https://myvmail.us.ci/images/pankou-archive/styles/style-${String(index + 1).padStart(2, '0')}.jpg`,
       alt: `盘扣样式 ${index + 1}`,
     })),
   },

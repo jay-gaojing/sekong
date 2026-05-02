@@ -79,7 +79,7 @@ const layoutImages: LayoutImage[] = [
     alt: '旗袍四大派系总览图',
     description:
       '旗袍之美，非止一端。自清末民初以来，受地域文化、气候环境、社会风尚与匠人传承的影响，旗袍逐渐形成了四大典型派系：苏派、京派、海派、粤派。她们或温婉、或端庄、或摩登、或兼容，共同构成了中国旗袍的多元谱系。',
-    mainImage: '/images/style-schools/layouts/overview.jpg',
+    mainImage: 'https://myvmail.us.ci/images/style-schools/layouts/overview.jpg',
     detailImages: [],
   },
   {
@@ -88,11 +88,11 @@ const layoutImages: LayoutImage[] = [
     alt: '苏派旗袍版式图',
     description:
       '以苏州为核心，苏绣为魂，工艺细腻清雅。形制上多采用传统平裁，曲线含蓄内敛，不刻意贴身。偏爱浅粉、月白、藕荷等低饱和度色系，搭配杭罗、苏缎等天然丝绸。整体气质温婉知性，如江南闺秀、书卷佳人，是文人旗袍的典型代表。',
-    mainImage: '/images/style-schools/layouts/su.jpg',
+    mainImage: 'https://myvmail.us.ci/images/style-schools/layouts/su.jpg',
     detailImages: [
-      '/images/style-schools/su/01.jpg',
-      '/images/style-schools/su/02.jpg',
-      '/images/style-schools/su/03.jpg',
+      'https://myvmail.us.ci/images/style-schools/su/01.jpg',
+      'https://myvmail.us.ci/images/style-schools/su/02.jpg',
+      'https://myvmail.us.ci/images/style-schools/su/03.jpg',
     ],
   },
   {
@@ -101,11 +101,11 @@ const layoutImages: LayoutImage[] = [
     alt: '京派旗袍版式图',
     description:
       '承袭清宫服饰传统，工艺讲究重工重料，善用盘金绣、打籽绣等宫廷技法。版型端庄大气，廓形方正宽松，不强调腰身。色彩以正红、明黄、宝蓝等高饱和度正色为主，面料偏爱织锦缎、云锦等厚重材质。气质威严华贵，是礼仪与身份的外化。',
-    mainImage: '/images/style-schools/layouts/jing.jpg',
+    mainImage: 'https://myvmail.us.ci/images/style-schools/layouts/jing.jpg',
     detailImages: [
-      '/images/style-schools/jing/01.jpg',
-      '/images/style-schools/jing/02.jpg',
-      '/images/style-schools/jing/03.jpg',
+      'https://myvmail.us.ci/images/style-schools/jing/01.jpg',
+      'https://myvmail.us.ci/images/style-schools/jing/02.jpg',
+      'https://myvmail.us.ci/images/style-schools/jing/03.jpg',
     ],
   },
   {
@@ -114,11 +114,11 @@ const layoutImages: LayoutImage[] = [
     alt: '海派旗袍版式图',
     description:
       '以上海为中心，率先引入西式立体剪裁与胸省工艺，版型修身显瘦，曲线毕露。面料选择多元，除丝绸外，还使用蕾丝、印花布、进口呢绒等新材料，色彩时髦多变。气质摩登风情，与老上海月份牌、百乐门舞厅文化紧密相连，是民国都市女性的时尚图腾。',
-    mainImage: '/images/style-schools/layouts/hai.jpg',
+    mainImage: 'https://myvmail.us.ci/images/style-schools/layouts/hai.jpg',
     detailImages: [
-      '/images/style-schools/hai/01.jpg',
-      '/images/style-schools/hai/02.jpg',
-      '/images/style-schools/hai/03.jpg',
+      'https://myvmail.us.ci/images/style-schools/hai/01.jpg',
+      'https://myvmail.us.ci/images/style-schools/hai/02.jpg',
+      'https://myvmail.us.ci/images/style-schools/hai/03.jpg',
     ],
   },
   {
@@ -127,11 +127,11 @@ const layoutImages: LayoutImage[] = [
     alt: '粤派旗袍版式图',
     description:
       '粤派旗袍融合岭南文化与南洋审美，整体更强调轻盈、通透与生活气息。常见修身流畅的线条、灵活利落的裁剪，以及蕾丝、珠绣、纱料等装饰性元素。色彩更明快开放，既保留传统旗袍的雅致，也带有海滨城市与华侨文化交汇后的时尚表达。',
-    mainImage: '/images/style-schools/layouts/yue.jpg',
+    mainImage: 'https://myvmail.us.ci/images/style-schools/layouts/yue.jpg',
     detailImages: [
-      '/images/style-schools/yue/01.jpg',
-      '/images/style-schools/yue/02.jpg',
-      '/images/style-schools/yue/03.jpg',
+      'https://myvmail.us.ci/images/style-schools/yue/01.jpg',
+      'https://myvmail.us.ci/images/style-schools/yue/02.jpg',
+      'https://myvmail.us.ci/images/style-schools/yue/03.jpg',
     ],
   },
 ]

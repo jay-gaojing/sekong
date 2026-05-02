@@ -54,7 +54,7 @@
         </div>
 
         <div class="hero-feature-image" aria-hidden="true">
-          <img src="/images/home-phoenix-embroidery.jpg" alt="" />
+          <img src="https://myvmail.us.ci/images/home-phoenix-embroidery.jpg" alt="" />
         </div>
       </div>
     </div>
@@ -85,7 +85,7 @@
   /* 黑色背景渐变遮罩 + 背景图 */
   background-image: 
     linear-gradient(to right, rgba(15, 15, 15, 0.95) 0%, rgba(20, 20, 20, 0.7) 40%, rgba(25, 25, 25, 0.1) 100%),
-    url('/首页/背景模板.jpg');
+    url('https://myvmail.us.ci/首页/背景模板.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

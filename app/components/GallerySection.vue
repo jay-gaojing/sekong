@@ -70,27 +70,27 @@ const filterTabs: FilterTab[] = [
 const activeFilter = ref('all')
 
 const classicImages = [
-    { title: '暗花绒袖', image: '/images/colors/暗花绒袖.jpg' },
-    { title: '白络', image: '/images/colors/白络.jpg' },
-    { title: '碧涧蝶', image: '/images/colors/碧涧蝶.jpg' },
-    { title: '藏蓝锦年', image: '/images/colors/藏蓝锦年.jpg' },
-    { title: '茶烟褐', image: '/images/colors/茶烟褐.jpg' }
+    { title: '暗花绒袖', image: 'https://myvmail.us.ci/images/colors/暗花绒袖.jpg' },
+    { title: '白络', image: 'https://myvmail.us.ci/images/colors/白络.jpg' },
+    { title: '碧涧蝶', image: 'https://myvmail.us.ci/images/colors/碧涧蝶.jpg' },
+    { title: '藏蓝锦年', image: 'https://myvmail.us.ci/images/colors/藏蓝锦年.jpg' },
+    { title: '茶烟褐', image: 'https://myvmail.us.ci/images/colors/茶烟褐.jpg' }
 ]
 
 const aiImages = [
-    { title: 'AI旗袍-1', image: '/images/colors/ai-1.jpg' },
-    { title: 'AI旗袍-2', image: '/images/colors/ai-2.jpg' },
-    { title: 'AI旗袍-3', image: '/images/colors/ai-3.jpg' },
-    { title: 'AI旗袍-4', image: '/images/colors/ai-4.jpg' },
-    { title: 'AI旗袍-5', image: '/images/colors/ai-5.jpg' }
+    { title: 'AI旗袍-1', image: 'https://myvmail.us.ci/images/colors/ai-1.jpg' },
+    { title: 'AI旗袍-2', image: 'https://myvmail.us.ci/images/colors/ai-2.jpg' },
+    { title: 'AI旗袍-3', image: 'https://myvmail.us.ci/images/colors/ai-3.jpg' },
+    { title: 'AI旗袍-4', image: 'https://myvmail.us.ci/images/colors/ai-4.jpg' },
+    { title: 'AI旗袍-5', image: 'https://myvmail.us.ci/images/colors/ai-5.jpg' }
 ]
 
 const modernImages = [
-    { title: '夜航星', image: '/images/colors/夜航星.jpg' },
-    { title: '碧纹凝领', image: '/images/colors/碧纹凝领.jpg' },
-    { title: '藏枝', image: '/images/colors/藏枝.jpg' },
-    { title: '茶绿缠枝', image: '/images/colors/茶绿缠枝.jpg' },
-    { title: '赤绫流苏', image: '/images/colors/赤绫流苏.jpg' }
+    { title: '夜航星', image: 'https://myvmail.us.ci/images/colors/夜航星.jpg' },
+    { title: '碧纹凝领', image: 'https://myvmail.us.ci/images/colors/碧纹凝领.jpg' },
+    { title: '藏枝', image: 'https://myvmail.us.ci/images/colors/藏枝.jpg' },
+    { title: '茶绿缠枝', image: 'https://myvmail.us.ci/images/colors/茶绿缠枝.jpg' },
+    { title: '赤绫流苏', image: 'https://myvmail.us.ci/images/colors/赤绫流苏.jpg' }
 ]
 
 const galleryItems = ref<GalleryItem[]>([

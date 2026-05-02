@@ -15,7 +15,7 @@
           controls
           preload="metadata"
           playsinline
-          src="/videos/craft-process.mp4"
+          src="https://myvmail.us.ci/videos/craft-process.mp4"
         >
           您的浏览器暂不支持视频播放。
         </video>
@@ -105,12 +105,12 @@ useHead({
 })
 
 const techniqueImages: CraftImage[] = Array.from({ length: 15 }, (_, index) => ({
-  src: `/images/crafts-archive/techniques/technique-${String(index + 1).padStart(2, '0')}.jpg`,
+  src: `https://myvmail.us.ci/images/crafts-archive/techniques/technique-${String(index + 1).padStart(2, '0')}.jpg`,
   alt: `旗袍工艺图片 ${index + 1}`,
 }))
 
 const beautyImages: CraftImage[] = Array.from({ length: 6 }, (_, index) => ({
-  src: `/images/crafts-archive/beauty/beauty-${String(index + 1).padStart(2, '0')}.jpg`,
+  src: `https://myvmail.us.ci/images/crafts-archive/beauty/beauty-${String(index + 1).padStart(2, '0')}.jpg`,
   alt: `工艺之美图片 ${index + 1}`,
 }))
 
