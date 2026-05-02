@@ -54,7 +54,7 @@
   position: absolute;
   inset: -12px;
   border-radius: 50%;
-  background: url('https://myvmail.us.ci/images/旗袍样式（传，现）二字的边框.jpg') no-repeat center 57%;
+  background: url('https://myvmail.us.ci/images/styleLabelBorder.jpg') no-repeat center 57%;
   background-size: 215% auto;
   filter: saturate(1.08);
   z-index: 1;

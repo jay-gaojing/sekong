@@ -12,11 +12,6 @@
             <h2 class="section-title">
               中国非物质文化遗产旗袍基因数据库
             </h2>
-            <div class="pankou-heart-wrapper">
-              <span class="pankou-icon">🔘</span>
-              <span class="pankou-label">盘扣心</span>
-            </div>
-            <div class="divider-line"></div>
           </header>
 
           <article class="article-body animate-fade-up" style="animation-delay: 0.2s">
@@ -54,7 +49,7 @@
         </div>
 
         <div class="hero-feature-image" aria-hidden="true">
-          <img src="https://myvmail.us.ci/images/home-phoenix-embroidery.jpg" alt="" />
+          <img src="https://myvmail.us.ci/images/homePhoenixEmbroidery.jpg" alt="" />
         </div>
       </div>
     </div>
@@ -153,33 +148,6 @@
   font-size: 2.5rem;
   color: rgba(255, 255, 255, 0.6);
   font-weight: 500;
-}
-
-.pankou-heart-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
-  margin-top: var(--spacing-sm);
-  color: var(--color-gold);
-}
-
-.pankou-icon {
-  font-size: 1.5rem;
-  animation: pulse 2s infinite;
-}
-
-.pankou-label {
-  font-family: var(--font-serif-cn);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-}
-
-.divider-line {
-  width: 80px;
-  height: 4px;
-  background: var(--color-gold);
-  margin: var(--spacing-sm) 0 0;
 }
 
 /* Article Styles */

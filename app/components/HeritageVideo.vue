@@ -247,7 +247,7 @@ const onVideoEnded = () => {
   width: 100px; /* Increased size for pattern visibility */
   height: 100px;
   border-radius: 50%;
-  background: url('https://myvmail.us.ci/images/旗袍工艺部分上的圆圈上面的纹样.jpg') no-repeat center center;
+  background: url('https://myvmail.us.ci/images/craftCirclePattern.jpg') no-repeat center center;
   background-size: cover;
   border: 2px solid rgba(255,255,255,0.5);
   position: relative;
