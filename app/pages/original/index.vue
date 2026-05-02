@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import rawCategories from '../../../public/original/original-assets.json'
+import rawCategories from '~/data/original-assets.json'
 
 interface OriginalCategory {
   id: string

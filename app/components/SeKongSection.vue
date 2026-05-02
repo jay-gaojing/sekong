@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import rawSeries from '../../public/images/color-series/color-series.json'
+import rawSeries from '~/data/color-series.json'
 
 interface ColorSeries {
   id: string

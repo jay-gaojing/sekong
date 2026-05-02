@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import lineageData from '../../../public/lineage/lineage.json'
+import lineageData from '~/data/lineage.json'
 
 interface LineageItem {
   id: string

@@ -1,0 +1,294 @@
+[
+    {
+        "id":  "invention",
+        "label":  "发明专利",
+        "description":  "聚焦旗袍制作中涉及的新工艺、新装置、新方法，体现非遗技艺在技术层面的创新突破。",
+        "count":  6,
+        "items":  [
+                      {
+                          "title":  "2025102754054-发明专利证书-一种基于数字化的绒花产品质量检测评估方法及系统-20250624-未知_01(1)",
+                          "image":  "https://myvmail.us.ci/ip/invention/invention-01.png"
+                      },
+                      {
+                          "title":  "2025102754054-发明专利证书-一种基于数字化的绒花产品质量检测评估方法及系统-20250624-未知_01",
+                          "image":  "https://myvmail.us.ci/ip/invention/invention-02.png"
+                      },
+                      {
+                          "title":  "2025116781589-发明专利证书-基于场景分析的旗袍定制分析方法及系统-20260213-未知(1)_01",
+                          "image":  "https://myvmail.us.ci/ip/invention/invention-03.png"
+                      },
+                      {
+                          "title":  "2025117372090-发明专利证书-旗袍参数化自动生成优化系统及方法-20260224-未知(1)_01",
+                          "image":  "https://myvmail.us.ci/ip/invention/invention-04.png"
+                      },
+                      {
+                          "title":  "2026041410038620-基于虚拟试穿与风格匹配的新中式服饰搭配系统及方法_01(1)",
+                          "image":  "https://myvmail.us.ci/ip/invention/invention-05.png"
+                      },
+                      {
+                          "title":  "2026041410038620-基于虚拟试穿与风格匹配的新中式服饰搭配系统及方法_01",
+                          "image":  "https://myvmail.us.ci/ip/invention/invention-06.png"
+                      }
+                  ]
+    },
+    {
+        "id":  "design",
+        "label":  "外观专利",
+        "description":  "收录旗袍及配饰的独有外观设计，保护传统样式在当代语境下的原创视觉转化。",
+        "count":  9,
+        "items":  [
+                      {
+                          "title":  "2025306912221-外观设计专利证书-旗袍（蓝绸雅韵）-20260428-(1)(1)_01",
+                          "image":  "https://myvmail.us.ci/ip/design/design-01.png"
+                      },
+                      {
+                          "title":  "下证-吊坠（绒花）-欧阳亮_01",
+                          "image":  "https://myvmail.us.ci/ip/design/design-02.png"
+                      },
+                      {
+                          "title":  "下证-耳环（绒花）-余洛文(1)_01",
+                          "image":  "https://myvmail.us.ci/ip/design/design-03.png"
+                      },
+                      {
+                          "title":  "下证-耳坠（绒花）-喻欣欣_01",
+                          "image":  "https://myvmail.us.ci/ip/design/design-04.png"
+                      },
+                      {
+                          "title":  "下证-戒指（绒花）-余洛文(2)_01",
+                          "image":  "https://myvmail.us.ci/ip/design/design-05.png"
+                      },
+                      {
+                          "title":  "下证-手镯（绒花）-胡雨萱(1)_01",
+                          "image":  "https://myvmail.us.ci/ip/design/design-06.png"
+                      },
+                      {
+                          "title":  "下证-首饰吊坠（绒花）-李蔚遥(2)_01",
+                          "image":  "https://myvmail.us.ci/ip/design/design-07.png"
+                      },
+                      {
+                          "title":  "下证-首饰配件（绒花）-李蔚遥(2)_01",
+                          "image":  "https://myvmail.us.ci/ip/design/design-08.png"
+                      },
+                      {
+                          "title":  "下证-项链挂件（绒花）-胡雨萱_01",
+                          "image":  "https://myvmail.us.ci/ip/design/design-09.png"
+                      }
+                  ]
+    },
+    {
+        "id":  "copyright",
+        "label":  "数字版权证书",
+        "description":  "登记旗袍设计手稿、纹样图稿、摄影作品、课程与图鉴等原创表达成果。",
+        "count":  47,
+        "items":  [
+                      {
+                          "title":  "1《翠叶浮梦蜻蜓舞》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-01.png"
+                      },
+                      {
+                          "title":  "10《初篁》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-02.png"
+                      },
+                      {
+                          "title":  "11《春日樱语》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-03.png"
+                      },
+                      {
+                          "title":  "12《翠鸟迎春》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-04.png"
+                      },
+                      {
+                          "title":  "13《丹枫》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-05.png"
+                      },
+                      {
+                          "title":  "14《蝶兰》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-06.png"
+                      },
+                      {
+                          "title":  "15《凤羽》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-07.png"
+                      },
+                      {
+                          "title":  "16《荷香遗韵》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-08.png"
+                      },
+                      {
+                          "title":  "17《花韵》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-09.png"
+                      },
+                      {
+                          "title":  "18《夹竹桃》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-10.png"
+                      },
+                      {
+                          "title":  "19《静谧花语 洋甘菊》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-11.png"
+                      },
+                      {
+                          "title":  "2《风翻红英》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-12.png"
+                      },
+                      {
+                          "title":  "20《静谧兰香》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-13.png"
+                      },
+                      {
+                          "title":  "21《静谧之荷》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-14.png"
+                      },
+                      {
+                          "title":  "22《静影蝶舞》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-15.png"
+                      },
+                      {
+                          "title":  "23《蓝梦花语》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-16.png"
+                      },
+                      {
+                          "title":  "24《绿影星莓》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-17.png"
+                      },
+                      {
+                          "title":  "25《梅韵》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-18.png"
+                      },
+                      {
+                          "title":  "26《墨池映荷》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-19.png"
+                      },
+                      {
+                          "title":  "27《清荷玉兰》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-20.png"
+                      },
+                      {
+                          "title":  "28《绒韵花影》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-21.png"
+                      },
+                      {
+                          "title":  "29《水仙发饰软簪》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-22.png"
+                      },
+                      {
+                          "title":  "3《菡萏新笑》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-23.png"
+                      },
+                      {
+                          "title":  "30《松鹤延年》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-24.png"
+                      },
+                      {
+                          "title":  "31《簌玉金枝桂花》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-25.png"
+                      },
+                      {
+                          "title":  "32《团团笃斯越桔发簪》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-26.png"
+                      },
+                      {
+                          "title":  "33《仙寿蟠桃发饰软簪》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-27.png"
+                      },
+                      {
+                          "title":  "34《小桃意》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-28.png"
+                      },
+                      {
+                          "title":  "35《阳光玫瑰 非遗绒花》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-29.png"
+                      },
+                      {
+                          "title":  "36《影映红芳》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-30.png"
+                      },
+                      {
+                          "title":  "37《幽篁》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-31.png"
+                      },
+                      {
+                          "title":  "38《幽兰见》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-32.png"
+                      },
+                      {
+                          "title":  "39《羽韵华章》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-33.png"
+                      },
+                      {
+                          "title":  "4《荷影婆娑》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-34.png"
+                      },
+                      {
+                          "title":  "40《郁离翠玉竹子发簪》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-35.png"
+                      },
+                      {
+                          "title":  "41《紫韵黄梦》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-36.png"
+                      },
+                      {
+                          "title":  "42《红梅摆件》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-37.png"
+                      },
+                      {
+                          "title":  "43《工笔小喜》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-38.png"
+                      },
+                      {
+                          "title":  "44《绒花小鸡图》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-39.png"
+                      },
+                      {
+                          "title":  "45《四方来财》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-40.png"
+                      },
+                      {
+                          "title":  "46《金叶葡萄》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-41.png"
+                      },
+                      {
+                          "title":  "47《蓝银珍珠梦》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-42.png"
+                      },
+                      {
+                          "title":  "5《荷影清韵》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-43.png"
+                      },
+                      {
+                          "title":  "6《莲心石语》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-44.png"
+                      },
+                      {
+                          "title":  "7《缤纷菊韵》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-45.png"
+                      },
+                      {
+                          "title":  "8《苍筤》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-46.png"
+                      },
+                      {
+                          "title":  "9《橙意》",
+                          "image":  "https://myvmail.us.ci/ip/copyright/copyright-47.png"
+                      }
+                  ]
+    },
+    {
+        "id":  "software",
+        "label":  "软件著作权",
+        "description":  "收录数据库、识别、展示及管理系统相关软件著作权，支撑非遗资源的数字化建设。",
+        "count":  3,
+        "items":  [
+                      {
+                          "title":  "3D绒花数据库系统_00",
+                          "image":  "https://myvmail.us.ci/ip/software/software-01.png"
+                      },
+                      {
+                          "title":  "3D设计可视化分析系统_00",
+                          "image":  "https://myvmail.us.ci/ip/software/software-02.png"
+                      },
+                      {
+                          "title":  "3D图案智能编辑管理系统_00",
+                          "image":  "https://myvmail.us.ci/ip/software/software-03.png"
+                      }
+                  ]
+    }
+]

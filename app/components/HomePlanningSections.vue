@@ -70,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import rawAssets from '../../public/home-planning/home-assets.json'
+import rawAssets from '~/data/home-planning.json'
 
 interface FabricItem {
   title: string

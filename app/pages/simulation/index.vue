@@ -86,7 +86,7 @@
 </template>
 
 <script setup lang="ts">
-import rawAssets from '../../../public/simulation/simulation-assets.json'
+import rawAssets from '~/data/simulation-assets.json'
 
 interface SimulationImage {
   title: string

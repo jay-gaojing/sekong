@@ -72,7 +72,7 @@
 </template>
 
 <script setup lang="ts">
-import rawCases from '../../../public/heritage-ip/cases.json'
+import rawCases from '~/data/heritage-ip-cases.json'
 
 interface HeritageCase {
   id: string

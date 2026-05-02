@@ -26,5 +26,5 @@ logs
 # Temp folders (all folders starting with tmp)
 tmp*
 
-# Public folder (static assets)
+# Public folder - static assets (images, videos) stored on R2 cloud storage
 public/

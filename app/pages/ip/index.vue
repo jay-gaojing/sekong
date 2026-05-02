@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import rawCategories from '../../../public/ip/ip-assets.json'
+import rawCategories from '~/data/ip-assets.json'
 
 interface IpAsset {
   title: string

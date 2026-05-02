@@ -1,0 +1,107 @@
+{
+    "video":  "https://myvmail.us.ci/simulation/video/qipao-3d-showcase.mp4",
+    "images":  [
+                   {
+                       "title":  "3D旗袍作品 01",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-01.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 02",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-02.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 03",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-03.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 04",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-04.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 05",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-05.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 06",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-06.jpg",
+                       "width":  900,
+                       "height":  900
+                   },
+                   {
+                       "title":  "3D旗袍作品 07",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-07.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 08",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-08.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 09",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-09.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 10",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-10.jpg",
+                       "width":  643,
+                       "height":  782
+                   },
+                   {
+                       "title":  "3D旗袍作品 11",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-11.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 12",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-12.jpg",
+                       "width":  900,
+                       "height":  900
+                   },
+                   {
+                       "title":  "3D旗袍作品 13",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-13.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 14",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-14.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 15",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-15.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 16",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-16.jpg",
+                       "width":  1810,
+                       "height":  2560
+                   },
+                   {
+                       "title":  "3D旗袍作品 17",
+                       "src":  "https://myvmail.us.ci/simulation/images/qipao-3d-17.jpg",
+                       "width":  900,
+                       "height":  900
+                   }
+               ]
+}
