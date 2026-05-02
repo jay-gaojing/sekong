@@ -84,7 +84,7 @@ type AboutAdvisor = {
   image?: string
 }
 
-const teamPhoto = '/about/team/team-group.jpeg'
+const teamPhoto = 'https://myvmail.us.ci/about/team/team-group.jpeg'
 const members = membersData as AboutMember[]
 const advisors = advisorsData as AboutAdvisor[]
 
