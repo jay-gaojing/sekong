@@ -38,6 +38,7 @@ const navItems: NavItem[] = [
   { id: '3d-sim', label: '3D仿真' },
   { id: 'cases', label: '传承谱系' },
   { id: 'ip', label: '知识产权' },
+  { id: 'heritage-ip', label: '非遗 IP' },
 ]
 
 const routeMap: Record<string, string> = {
@@ -51,6 +52,7 @@ const routeMap: Record<string, string> = {
   '3d-sim': '/simulation',
   cases: '/cases',
   ip: '/ip',
+  'heritage-ip': '/heritage-ip',
 }
 
 const activeItem = ref('yan')
@@ -64,9 +66,9 @@ const getActiveFromRoute = (path: string): string => {
   if (path.startsWith('/pankou')) return 'pankou'
   if (path.startsWith('/colors')) return 'colors'
   if (path.startsWith('/simulation')) return '3d-sim'
-  if (path.startsWith('/heritage-ip')) return 'cases'
   if (path.startsWith('/cases')) return 'cases'
   if (path.startsWith('/ip')) return 'ip'
+  if (path.startsWith('/heritage-ip')) return 'heritage-ip'
   return 'yan'
 }
 
