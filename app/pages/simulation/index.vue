@@ -38,6 +38,29 @@
       </article>
     </section>
 
+    <section class="section-heading">
+      <p class="eyebrow">Production</p>
+      <h2>3D 制作过程</h2>
+      <p>Style3D 仿真旗袍的制作流程记录，从版型建模、面料设定到最终渲染输出，展示数字化旗袍的完整创作链路。</p>
+    </section>
+
+    <section class="image-grid" aria-label="3D制作过程">
+      <article
+        v-for="(img, index) in processImages"
+        :key="img.src"
+        class="image-card"
+      >
+        <button type="button" class="preview-trigger" @click="openProcessPreview(index)">
+          <img :src="img.src" :alt="img.title" loading="lazy" />
+          <span class="preview-text">预览</span>
+        </button>
+        <div class="caption">
+          <span>{{ String(index + 1).padStart(2, '0') }}</span>
+          <strong>{{ img.title }}</strong>
+        </div>
+      </article>
+    </section>
+
     <Teleport to="body">
       <div
         v-if="previewImage"
@@ -79,11 +102,26 @@ interface SimulationAssets {
 
 const assets = rawAssets as SimulationAssets
 const simulationImages = assets.images
+
+const processImages = [
+  { src: '/images/simulation-process/1-1.png', title: 'Style3D 制作流程 01' },
+  { src: '/images/simulation-process/1-2.png', title: 'Style3D 制作流程 02' },
+  { src: '/images/simulation-process/1-3.png', title: 'Style3D 制作流程 03' },
+  { src: '/images/simulation-process/1-4.png', title: 'Style3D 制作流程 04' },
+  { src: '/images/simulation-process/1-5.png', title: 'Style3D 制作流程 05' },
+]
+
+// Combine all images for unified preview
+const allPreviewImages = [...simulationImages, ...processImages]
 const activeIndex = ref(-1)
-const previewImage = computed(() => activeIndex.value >= 0 ? simulationImages[activeIndex.value] : null)
+const previewImage = computed(() => activeIndex.value >= 0 ? allPreviewImages[activeIndex.value] : null)
 
 const openPreview = (index: number) => {
   activeIndex.value = index
+}
+
+const openProcessPreview = (index: number) => {
+  activeIndex.value = simulationImages.length + index
 }
 
 const closePreview = () => {
@@ -91,11 +129,11 @@ const closePreview = () => {
 }
 
 const showPrev = () => {
-  activeIndex.value = (activeIndex.value - 1 + simulationImages.length) % simulationImages.length
+  activeIndex.value = (activeIndex.value - 1 + allPreviewImages.length) % allPreviewImages.length
 }
 
 const showNext = () => {
-  activeIndex.value = (activeIndex.value + 1) % simulationImages.length
+  activeIndex.value = (activeIndex.value + 1) % allPreviewImages.length
 }
 
 const handleKeydown = (event: KeyboardEvent) => {

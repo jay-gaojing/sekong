@@ -5,13 +5,15 @@
       <div class="nav-left group">
         <div class="logo-wrapper">
           <div class="site-branding">
+            <NuxtLink to="/" class="site-home-link" aria-label="返回首页">
             <h1 class="site-title">
               <img src="/首页/logo.png" alt="Logo" class="site-logo-img" />
               <div class="site-text-info">
-                <span class="text-highlight">旗袍数据库</span>
+                <span class="text-highlight">色控研究院</span>
                 <span class="text-en">SEKONG LAB</span>
               </div>
             </h1>
+            </NuxtLink>
             <!-- 总量统计（绿色下划线）：交互式弹出 -->
             <div class="total-stats-wrapper">
               <button class="stats-trigger-btn" @click="showStatsModal = true">
@@ -285,11 +287,22 @@ const toggleLanguage = () => {
   gap: 4px;
 }
 
+.site-home-link {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+}
+
 .site-title {
   display: flex;
   align-items: center;
   gap: 8px;
   line-height: 1;
+  transition: opacity 0.2s ease;
+}
+
+.site-home-link:hover .site-title {
+  opacity: 0.88;
 }
 
 .site-logo-img {

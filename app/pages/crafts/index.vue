@@ -8,6 +8,20 @@
       </p>
     </section>
 
+    <section class="craft-video-shell" aria-label="旗袍工艺视频">
+      <div class="craft-video-frame">
+        <video
+          class="craft-video"
+          controls
+          preload="metadata"
+          playsinline
+          src="/videos/craft-process.mp4"
+        >
+          您的浏览器暂不支持视频播放。
+        </video>
+      </div>
+    </section>
+
     <section class="craft-section technique-section" aria-labelledby="technique-title">
       <header class="section-heading">
         <span class="section-number">01</span>
@@ -175,6 +189,44 @@ const closePreview = () => {
   transform: translateX(-34px);
 }
 
+.craft-video-shell {
+  width: min(1180px, calc(100% - 300px));
+  margin: 0 auto;
+  padding: 0 0 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  transform: translateX(-34px);
+}
+
+.craft-video-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(214, 176, 107, 0.18);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(72, 11, 19, 0.36), rgba(12, 10, 10, 0.94)),
+    rgba(255, 255, 255, 0.03);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
+}
+
+.craft-video-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 26%),
+    radial-gradient(circle at 50% 30%, rgba(214, 176, 107, 0.08), transparent 42%);
+}
+
+.craft-video {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  aspect-ratio: 21 / 7;
+  background: #050505;
+}
+
 .section-heading {
   display: grid;
   justify-items: center;
@@ -325,6 +377,7 @@ const closePreview = () => {
 
 @media (max-width: 980px) {
   .crafts-hero,
+  .craft-video-shell,
   .craft-section {
     width: min(760px, calc(100% - 32px));
     transform: none;
@@ -339,6 +392,10 @@ const closePreview = () => {
 @media (max-width: 560px) {
   .crafts-hero {
     padding: 56px 0 42px;
+  }
+
+  .craft-video {
+    aspect-ratio: 16 / 9;
   }
 
   .section-heading {

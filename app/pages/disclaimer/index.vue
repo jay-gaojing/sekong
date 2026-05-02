@@ -2,10 +2,9 @@
   <main class="disclaimer-page">
     <article class="content-panel">
       <p class="eyebrow">Copyright & Disclaimer</p>
-      <h1>版权与免责声明</h1>
+      <h1>中国非遗旗袍数字博物馆免责声明</h1>
 
       <section>
-        <h2>中国非遗旗袍数字博物馆免责声明</h2>
         <p>尊敬的访客：</p>
         <p>
           欢迎访问中国非遗旗袍数字博物馆！本网站致力于推广和传承中国传统旗袍技艺与文化，所有内容均以文化传播、教育研究为目的，非商业用途。
@@ -55,7 +54,7 @@
 
 <script setup lang="ts">
 useHead({
-  title: '版权与免责声明 - 中国非遗旗袍数字博物馆',
+  title: '免责声明 - 中国非遗旗袍数字博物馆',
 })
 </script>
 
@@ -70,9 +69,9 @@ useHead({
 }
 
 .content-panel {
-  width: min(920px, 100%);
+  width: min(980px, 100%);
   margin: 0 auto;
-  padding: clamp(24px, 4vw, 48px);
+  padding: clamp(28px, 4vw, 54px);
   border: 1px solid rgba(214, 176, 107, 0.22);
   border-radius: 8px;
   background: rgba(255, 248, 232, 0.055);
@@ -80,7 +79,7 @@ useHead({
 }
 
 .eyebrow {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   color: var(--color-gold);
   font-size: 0.78rem;
   font-weight: 700;
@@ -96,26 +95,27 @@ h2 {
 }
 
 h1 {
-  margin-bottom: 32px;
+  margin-bottom: 34px;
   color: var(--color-gold);
-  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.25;
 }
 
 section {
-  margin-top: 24px;
+  margin-top: 26px;
 }
 
 h2 {
   margin-bottom: 10px;
   color: rgba(255, 245, 218, 0.94);
-  font-size: 1.2rem;
+  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
 }
 
 p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1rem;
-  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1rem, 1.25vw, 1.12rem);
+  line-height: 1.95;
 }
 
 section p + p {
@@ -129,5 +129,15 @@ section p + p {
 a {
   color: var(--color-gold);
   text-decoration: none;
+}
+
+a:hover {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .disclaimer-page {
+    padding: calc(var(--header-height) + 32px) 16px 48px;
+  }
 }
 </style>

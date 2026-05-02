@@ -1,46 +1,42 @@
 <template>
   <main class="original-page">
-    <section class="hero">
+    <section class="original-hero">
       <p class="eyebrow">Sekong Original</p>
-      <h1>色控原创</h1>
-      <p class="intro">
-        收录色控原创旗袍、新中式女装、男装、婚庆礼服与配饰系列，呈现非遗工艺在当代服饰中的设计转译。
-      </p>
+      <h1>衣脉相承·非遗旗袍数字图鉴</h1>
+      <p class="hero-copy">以下点开后的图片和文字参考后面附录都有详细说明。</p>
     </section>
 
-    <section class="original-layout" aria-label="色控原创分类图库">
-      <aside class="category-tabs">
+    <nav class="category-nav" aria-label="色控原创类目导航">
+      <a v-for="item in categories" :key="item.id" :href="`#${item.id}`">
+        <span>{{ item.title }}</span>{{ item.subtitle }}
+      </a>
+    </nav>
+
+    <section
+      v-for="(category, categoryIndex) in categories"
+      :id="category.id"
+      :key="category.id"
+      class="category-section"
+    >
+      <header class="category-header">
+        <span class="section-number">{{ String(categoryIndex + 1).padStart(2, '0') }}</span>
+        <p class="section-kicker">Original Series</p>
+        <h2>{{ category.title }}：{{ category.subtitle }}</h2>
+        <p class="category-copy">{{ category.description }}</p>
+      </header>
+
+      <div class="image-grid">
         <button
-          v-for="item in categories"
-          :key="item.id"
+          v-for="(image, index) in category.images"
+          :key="image"
           type="button"
-          class="category-tab"
-          :class="{ active: activeId === item.id }"
-          @click="setActiveId(item.id)"
+          class="image-card"
+          @click="previewImage = image"
         >
-          <span>{{ item.title }}</span>
-          <small>{{ item.subtitle }} · {{ item.count }} 张</small>
+          <img :src="image" :alt="`${category.title}${category.subtitle}图片 ${index + 1}`" loading="lazy" />
+          <span>{{ String(index + 1).padStart(2, '0') }}</span>
         </button>
-      </aside>
-
-      <article v-if="activeCategory" class="gallery-panel">
-        <header class="gallery-header">
-          <span class="detail-label">Original Series</span>
-          <h2>{{ activeCategory.title }}：{{ activeCategory.subtitle }}</h2>
-        </header>
-
-        <div class="image-grid">
-          <button
-            v-for="image in activeCategory.images"
-            :key="image"
-            type="button"
-            class="image-card"
-            @click="previewImage = image"
-          >
-            <img :src="image" :alt="activeCategory.subtitle" loading="lazy" />
-          </button>
-        </div>
-      </article>
+      </div>
     </section>
 
     <Teleport to="body">
@@ -61,37 +57,22 @@ interface OriginalCategory {
   id: string
   title: string
   subtitle: string
+  description: string
   count: number
   images: string[]
 }
 
 const categories = rawCategories as OriginalCategory[]
-const route = useRoute()
-const router = useRouter()
-const defaultId = categories[0]?.id ?? ''
-const categoryIds = new Set(categories.map((item) => item.id))
-
-const resolveCategoryId = (value: unknown) => {
-  const id = typeof value === 'string' ? value : ''
-  return categoryIds.has(id) ? id : defaultId
-}
-
-const activeId = ref(resolveCategoryId(route.query.category))
 const previewImage = ref('')
-const activeCategory = computed(() => categories.find((item) => item.id === activeId.value))
 
-const setActiveId = (id: string) => {
-  activeId.value = resolveCategoryId(id)
-  router.replace({ query: { ...route.query, category: activeId.value } })
+const scrollToHash = () => {
+  if (!window.location.hash) return
+  window.requestAnimationFrame(() => {
+    document.querySelector(window.location.hash)?.scrollIntoView({ block: 'start' })
+  })
 }
 
-watch(
-  () => route.query.category,
-  (value) => {
-    activeId.value = resolveCategoryId(value)
-  },
-  { immediate: true }
-)
+onMounted(scrollToHash)
 
 useHead({
   title: '色控原创 - 色控旗袍数据库',
@@ -101,154 +82,176 @@ useHead({
 <style scoped>
 .original-page {
   min-height: 100vh;
-  padding: calc(var(--header-height) + 48px) clamp(18px, 4vw, 56px) 72px;
+  padding-bottom: 96px;
   background:
-    radial-gradient(circle at 16% 12%, rgba(212, 175, 55, 0.14), transparent 30%),
-    linear-gradient(180deg, rgba(16, 13, 12, 0.98), var(--color-bg-dark) 48%);
-  color: var(--color-text-light);
+    radial-gradient(circle at 78% 8%, rgba(169, 38, 51, 0.18), transparent 28%),
+    radial-gradient(circle at 10% 38%, rgba(214, 176, 107, 0.1), transparent 26%),
+    #050505;
+  color: #fff;
+  overflow: hidden;
 }
 
-.hero,
-.original-layout {
-  width: min(1220px, 100%);
+.original-hero,
+.category-nav {
+  width: min(1080px, calc(100% - 260px));
   margin-inline: auto;
 }
 
-.hero {
-  margin-bottom: 34px;
+.original-hero {
+  padding: 92px 0 42px;
+  text-align: center;
 }
 
-.eyebrow {
-  margin: 0 0 10px;
-  color: var(--color-gold);
+.eyebrow,
+.section-kicker {
+  margin: 0;
+  color: #d9b36c;
+  font-family: var(--font-serif-en);
   font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 h1,
 h2 {
   margin: 0;
-  color: var(--color-gold);
+  color: rgba(255, 248, 232, 0.94);
   font-family: var(--font-serif-cn);
+  font-weight: 700;
   letter-spacing: 0;
 }
 
 h1 {
-  font-size: clamp(2.2rem, 4.2vw, 4.2rem);
-  line-height: 1.08;
+  margin: 18px auto 0;
+  font-size: clamp(3rem, 6vw, 6.4rem);
+  font-weight: 600;
+  line-height: 1.12;
 }
 
-.intro {
-  max-width: 780px;
-  margin: 16px 0 0;
-  color: var(--color-text-muted);
-  font-size: 1rem;
-  line-height: 1.8;
-}
-
-.original-layout {
-  display: grid;
-  grid-template-columns: minmax(220px, 300px) 1fr;
-  gap: 24px;
-  align-items: start;
-}
-
-.category-tabs {
-  position: sticky;
-  top: calc(var(--header-height) + 24px);
-  display: grid;
-  gap: 12px;
-}
-
-.category-tab {
-  width: 100%;
-  padding: 18px;
-  border: 1px solid rgba(214, 176, 107, 0.2);
-  border-radius: 8px;
-  background: rgba(255, 248, 232, 0.045);
-  color: var(--color-text-light);
-  text-align: left;
-  cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
-}
-
-.category-tab:hover,
-.category-tab.active {
-  border-color: rgba(214, 176, 107, 0.72);
-  background: rgba(214, 176, 107, 0.12);
-  transform: translateY(-2px);
-}
-
-.category-tab span {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--color-gold);
+.hero-copy {
+  max-width: 920px;
+  margin: 28px auto 0;
+  color: rgba(255, 255, 255, 0.72);
   font-family: var(--font-serif-cn);
-  font-size: 1.12rem;
+  font-size: 1.04rem;
+  line-height: 1.95;
+}
+
+.category-nav {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 0 22px;
+  background: rgba(5, 5, 5, 0.86);
+  backdrop-filter: blur(10px);
+}
+
+.category-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid rgba(214, 176, 107, 0.45);
+  border-radius: 999px;
+  color: rgba(255, 248, 232, 0.78);
+  font-family: var(--font-serif-cn);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.category-nav span {
+  color: var(--color-gold);
   font-weight: 700;
 }
 
-.category-tab small {
-  color: var(--color-text-muted);
-  font-size: 0.84rem;
+.category-section {
+  width: min(1180px, calc(100% - 300px));
+  margin: 0 auto;
+  padding: 76px 0 90px;
+  scroll-margin-top: calc(var(--header-height) + 64px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  transform: translateX(-34px);
 }
 
-.gallery-panel {
-  padding: clamp(20px, 3vw, 32px);
-  border: 1px solid rgba(214, 176, 107, 0.2);
-  border-radius: 8px;
-  background: rgba(255, 248, 232, 0.052);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+.category-header {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  max-width: 980px;
+  margin: 0 auto 34px;
+  text-align: center;
 }
 
-.gallery-header {
-  margin-bottom: 22px;
+.section-number {
+  color: rgba(255, 255, 255, 0.2);
+  font-family: var(--font-serif-en);
+  font-size: clamp(2.8rem, 5vw, 5.2rem);
+  line-height: 0.82;
 }
 
-.detail-label {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--color-text-muted);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.category-header h2 {
+  margin: 8px 0 0;
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 4.2rem);
+  font-weight: 600;
+  line-height: 1.1;
 }
 
-.gallery-header h2 {
-  font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+.category-copy {
+  max-width: 980px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: var(--font-serif-cn);
+  font-size: 1rem;
+  line-height: 1.95;
 }
 
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(3, minmax(190px, 1fr));
+  gap: clamp(16px, 1.55vw, 24px);
 }
 
 .image-card {
+  position: relative;
   display: block;
   width: 100%;
   padding: 0;
-  aspect-ratio: 3 / 4;
   overflow: hidden;
-  border: 1px solid rgba(214, 176, 107, 0.22);
+  border: 1px solid rgba(214, 176, 107, 0.2);
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(255, 248, 232, 0.045);
   cursor: zoom-in;
+  box-shadow: 0 20px 46px rgba(0, 0, 0, 0.35);
 }
 
 .image-card img {
-  width: 100%;
-  height: 100%;
   display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  transition: transform 0.25s ease;
+  object-position: center;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .image-card:hover img {
-  transform: scale(1.04);
+  transform: scale(1.035);
+  filter: saturate(1.06) contrast(1.03);
+}
+
+.image-card span {
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-serif-en);
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.72);
 }
 
 .preview-backdrop {
@@ -286,13 +289,36 @@ h1 {
   cursor: pointer;
 }
 
-@media (max-width: 980px) {
-  .original-layout {
-    grid-template-columns: 1fr;
+@media (max-width: 900px) {
+  .original-hero,
+  .category-nav,
+  .category-section {
+    width: min(760px, calc(100% - 32px));
+    transform: none;
   }
 
-  .category-tabs {
-    position: static;
+  .image-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .original-hero {
+    padding: 56px 0 42px;
+  }
+
+  .category-nav {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
+  .category-nav a {
+    flex: 0 0 auto;
+  }
+
+  .image-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

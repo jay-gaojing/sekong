@@ -30,7 +30,7 @@ const route = useRoute()
 const navItems: NavItem[] = [
   { id: 'yan', label: '首页' },
   { id: 'original', label: '旗袍原创' },
-  { id: 'styles', label: '旗袍样式' },
+  { id: 'styles', label: '四大派系' },
   { id: 'materials', label: '旗袍面料' },
   { id: 'crafts', label: '旗袍工艺' },
   { id: 'pankou', label: '旗袍盘扣' },

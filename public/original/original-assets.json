@@ -1,145 +1,152 @@
-﻿[
-    {
-        "id":  "lan",
-        "title":  "兰",
-        "subtitle":  "少女旗袍样式",
-        "count":  9,
-        "images":  [
-                       "/original/lan/01.jpg",
-                       "/original/lan/02.jpg",
-                       "/original/lan/03.jpg",
-                       "/original/lan/04.jpg",
-                       "/original/lan/05.jpg",
-                       "/original/lan/06.jpg",
-                       "/original/lan/07.jpg",
-                       "/original/lan/08.jpg",
-                       "/original/lan/09.jpg"
-                   ]
-    },
-    {
-        "id":  "jiang",
-        "title":  "匠",
-        "subtitle":  "色控原创非遗旗袍",
-        "count":  18,
-        "images":  [
-                       "/original/jiang/01.jpg",
-                       "/original/jiang/02.jpg",
-                       "/original/jiang/03.jpg",
-                       "/original/jiang/04.jpg",
-                       "/original/jiang/05.jpg",
-                       "/original/jiang/06.jpg",
-                       "/original/jiang/07.jpg",
-                       "/original/jiang/08.jpg",
-                       "/original/jiang/09.jpg",
-                       "/original/jiang/10.jpg",
-                       "/original/jiang/11.jpg",
-                       "/original/jiang/12.jpg",
-                       "/original/jiang/13.jpg",
-                       "/original/jiang/14.jpg",
-                       "/original/jiang/15.jpg",
-                       "/original/jiang/16.jpg",
-                       "/original/jiang/17.jpg",
-                       "/original/jiang/18.jpg"
-                   ]
-    },
-    {
-        "id":  "xi",
-        "title":  "囍",
-        "subtitle":  "婚庆旗袍样式",
-        "count":  12,
-        "images":  [
-                       "/original/xi/01.jpg",
-                       "/original/xi/02.jpg",
-                       "/original/xi/03.jpg",
-                       "/original/xi/04.jpg",
-                       "/original/xi/05.jpg",
-                       "/original/xi/06.jpg",
-                       "/original/xi/07.jpg",
-                       "/original/xi/08.jpg",
-                       "/original/xi/09.jpg",
-                       "/original/xi/10.jpg",
-                       "/original/xi/11.jpg",
-                       "/original/xi/12.jpg"
-                   ]
-    },
-    {
-        "id":  "chao",
-        "title":  "潮",
-        "subtitle":  "新中式女装",
-        "count":  12,
-        "images":  [
-                       "/original/chao/01.jpg",
-                       "/original/chao/02.jpg",
-                       "/original/chao/03.jpg",
-                       "/original/chao/04.jpg",
-                       "/original/chao/05.jpg",
-                       "/original/chao/06.jpg",
-                       "/original/chao/07.jpg",
-                       "/original/chao/08.jpg",
-                       "/original/chao/09.jpg",
-                       "/original/chao/10.jpg",
-                       "/original/chao/11.jpg",
-                       "/original/chao/12.jpg"
-                   ]
-    },
-    {
-        "id":  "zhu",
-        "title":  "竹",
-        "subtitle":  "新中式男装",
-        "count":  12,
-        "images":  [
-                       "/original/zhu/01.jpg",
-                       "/original/zhu/02.jpg",
-                       "/original/zhu/03.jpg",
-                       "/original/zhu/04.jpg",
-                       "/original/zhu/05.jpg",
-                       "/original/zhu/06.jpg",
-                       "/original/zhu/07.jpg",
-                       "/original/zhu/08.jpg",
-                       "/original/zhu/09.jpg",
-                       "/original/zhu/10.jpg",
-                       "/original/zhu/11.jpg",
-                       "/original/zhu/12.jpg"
-                   ]
-    },
-    {
-        "id":  "shang",
-        "title":  "裳",
-        "subtitle":  "旗袍经典样式",
-        "count":  15,
-        "images":  [
-                       "/original/shang/01.jpg",
-                       "/original/shang/02.jpg",
-                       "/original/shang/03.jpg",
-                       "/original/shang/04.jpg",
-                       "/original/shang/05.jpg",
-                       "/original/shang/06.jpg",
-                       "/original/shang/07.jpg",
-                       "/original/shang/08.jpg",
-                       "/original/shang/09.jpg",
-                       "/original/shang/10.jpg",
-                       "/original/shang/11.jpg",
-                       "/original/shang/12.jpg",
-                       "/original/shang/13.jpg",
-                       "/original/shang/14.jpg",
-                       "/original/shang/15.jpg"
-                   ]
-    },
-    {
-        "id":  "shi",
-        "title":  "饰",
-        "subtitle":  "旗袍饰品",
-        "count":  9,
-        "images":  [
-                       "/original/shi/01.jpg",
-                       "/original/shi/02.jpg",
-                       "/original/shi/03.jpg",
-                       "/original/shi/04.jpg",
-                       "/original/shi/05.jpg",
-                       "/original/shi/06.jpg",
-                       "/original/shi/07.jpg",
-                       "/original/shi/08.jpg",
-                       "/original/shi/09.jpg"
-                   ]
-    }
+[
+  {
+    "id": "xi",
+    "title": "囍",
+    "subtitle": "婚庆旗袍样式",
+    "description": "专用于婚庆场景的旗袍样式库。以红色系、龙凤纹、金银绣、多层绲边、长拖尾等元素为特征，涵盖新娘敬酒服、龙凤褂改良款、母亲旗袍等，体现中式婚仪中的吉祥美学与非遗刺绣工艺。",
+    "count": 12,
+    "images": [
+      "/original/xi/01.jpg",
+      "/original/xi/02.jpg",
+      "/original/xi/03.jpg",
+      "/original/xi/04.jpg",
+      "/original/xi/05.jpg",
+      "/original/xi/06.jpg",
+      "/original/xi/07.jpg",
+      "/original/xi/08.jpg",
+      "/original/xi/09.jpg",
+      "/original/xi/10.jpg",
+      "/original/xi/11.jpg",
+      "/original/xi/12.jpg"
+    ]
+  },
+  {
+    "id": "jiang",
+    "title": "匠",
+    "subtitle": "色控原创非遗旗袍",
+    "description": "聚焦以色彩为核心表达的非遗旗袍原创作品。强调植物染、矿物色、传统色谱体系（如敦煌色、故宫色）在旗袍中的系统性应用，记录每一件作品的色彩配方与工艺手法，体现“匠人×色控”的美学基因。",
+    "count": 18,
+    "images": [
+      "/original/jiang/01.jpg",
+      "/original/jiang/02.jpg",
+      "/original/jiang/03.jpg",
+      "/original/jiang/04.jpg",
+      "/original/jiang/05.jpg",
+      "/original/jiang/06.jpg",
+      "/original/jiang/07.jpg",
+      "/original/jiang/08.jpg",
+      "/original/jiang/09.jpg",
+      "/original/jiang/10.jpg",
+      "/original/jiang/11.jpg",
+      "/original/jiang/12.jpg",
+      "/original/jiang/13.jpg",
+      "/original/jiang/14.jpg",
+      "/original/jiang/15.jpg",
+      "/original/jiang/16.jpg",
+      "/original/jiang/17.jpg",
+      "/original/jiang/18.jpg"
+    ]
+  },
+  {
+    "id": "chao",
+    "title": "潮",
+    "subtitle": "新中式女装",
+    "description": "收录融合当代审美与传统旗袍元素的新中式女装设计。涵盖改良廓形、解构盘扣、面料创新等方向，展现“非遗+潮流”的设计语言，适用于年轻消费群体与时装周秀场参考。",
+    "count": 12,
+    "images": [
+      "/original/chao/01.jpg",
+      "/original/chao/02.jpg",
+      "/original/chao/03.jpg",
+      "/original/chao/04.jpg",
+      "/original/chao/05.jpg",
+      "/original/chao/06.jpg",
+      "/original/chao/07.jpg",
+      "/original/chao/08.jpg",
+      "/original/chao/09.jpg",
+      "/original/chao/10.jpg",
+      "/original/chao/11.jpg",
+      "/original/chao/12.jpg"
+    ]
+  },
+  {
+    "id": "lan",
+    "title": "兰",
+    "subtitle": "少女旗袍样式",
+    "description": "以清雅、轻盈为基调的少女旗袍样式库。包含短款、A摆、蕾丝拼接、浅色系盘扣等元素，适合青春期至青年女性日常与仪式感穿着，突出“兰”的温婉气质与现代少女感并存的审美取向。",
+    "count": 9,
+    "images": [
+      "/original/lan/01.jpg",
+      "/original/lan/02.jpg",
+      "/original/lan/03.jpg",
+      "/original/lan/04.jpg",
+      "/original/lan/05.jpg",
+      "/original/lan/06.jpg",
+      "/original/lan/07.jpg",
+      "/original/lan/08.jpg",
+      "/original/lan/09.jpg"
+    ]
+  },
+  {
+    "id": "shang",
+    "title": "裳",
+    "subtitle": "旗袍经典样式",
+    "description": "系统梳理1920–1940年代及建国初期的经典旗袍样式。包含传统平裁、大襟、立领、倒大袖、三绲边等典型工艺结构，是研究旗袍形制演变与地域流派（京派、海派、苏派）的基础样本库。",
+    "count": 15,
+    "images": [
+      "/original/shang/01.jpg",
+      "/original/shang/02.jpg",
+      "/original/shang/03.jpg",
+      "/original/shang/04.jpg",
+      "/original/shang/05.jpg",
+      "/original/shang/06.jpg",
+      "/original/shang/07.jpg",
+      "/original/shang/08.jpg",
+      "/original/shang/09.jpg",
+      "/original/shang/10.jpg",
+      "/original/shang/11.jpg",
+      "/original/shang/12.jpg",
+      "/original/shang/13.jpg",
+      "/original/shang/14.jpg",
+      "/original/shang/15.jpg"
+    ]
+  },
+  {
+    "id": "zhu",
+    "title": "竹",
+    "subtitle": "新中式男装",
+    "description": "以“竹”的清峻、刚直为精神意象，收录新中式男装设计作品。包含改良对襟、立领衫、盘扣马甲、亚麻/香云纱面料等元素，探索男性视角下的非遗服饰语言，填补旗袍数据库在男装领域的延伸。",
+    "count": 12,
+    "images": [
+      "/original/zhu/01.jpg",
+      "/original/zhu/02.jpg",
+      "/original/zhu/03.jpg",
+      "/original/zhu/04.jpg",
+      "/original/zhu/05.jpg",
+      "/original/zhu/06.jpg",
+      "/original/zhu/07.jpg",
+      "/original/zhu/08.jpg",
+      "/original/zhu/09.jpg",
+      "/original/zhu/10.jpg",
+      "/original/zhu/11.jpg",
+      "/original/zhu/12.jpg"
+    ]
+  },
+  {
+    "id": "shi",
+    "title": "饰",
+    "subtitle": "旗袍饰品",
+    "description": "收录与旗袍搭配或源自旗袍工艺的饰品门类，包括：盘扣耳饰、压襟、手推绣胸针、发簪、云肩等。强调饰品与旗袍在材料、色彩、纹样上的系统关系，为整体造型研究提供配套素材。",
+    "count": 9,
+    "images": [
+      "/original/shi/01.jpg",
+      "/original/shi/02.jpg",
+      "/original/shi/03.jpg",
+      "/original/shi/04.jpg",
+      "/original/shi/05.jpg",
+      "/original/shi/06.jpg",
+      "/original/shi/07.jpg",
+      "/original/shi/08.jpg",
+      "/original/shi/09.jpg"
+    ]
+  }
 ]

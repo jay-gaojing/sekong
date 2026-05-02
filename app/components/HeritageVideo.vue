@@ -148,20 +148,29 @@ const onVideoEnded = () => {
 }
 
 .section-header {
-  margin-bottom: var(--spacing-xl);
+  width: min(100%, 1080px);
+  margin: 18px auto var(--spacing-xl);
+  text-align: center;
 }
 
 .section-title {
-  font-size: var(--text-4xl);
-  margin-bottom: var(--spacing-xs);
+  margin: 0;
+  color: var(--color-gold);
+  font-family: var(--font-serif-cn);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.1;
 }
 
 .title-sub {
-  font-family: var(--font-serif-en);
-  font-size: 1.2rem;
+  margin: 8px 0 0;
   color: var(--color-text-muted);
-  letter-spacing: 0.2em;
+  font-family: var(--font-serif-en);
+  font-size: 1rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-align: center;
 }
 
 /* Video Frame */

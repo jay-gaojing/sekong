@@ -102,8 +102,10 @@ const closePoster = () => {
   min-height: 100vh;
   padding: calc(var(--header-height) + 32px) 48px 64px;
   background:
-    radial-gradient(circle at top, rgba(126, 32, 43, 0.22), transparent 32%),
-    linear-gradient(180deg, #141212 0%, #1a1514 36%, #efe6d7 36%, #f5efe4 100%);
+    radial-gradient(circle at 20% 10%, rgba(126, 32, 43, 0.18), transparent 30%),
+    radial-gradient(circle at 80% 30%, rgba(214, 176, 107, 0.08), transparent 28%),
+    linear-gradient(180deg, rgba(16, 13, 12, 0.98), var(--color-bg-dark, #0a0a0a) 48%);
+  color: #fff;
 }
 
 .hero-section {
@@ -156,7 +158,7 @@ const closePoster = () => {
 }
 
 .section-en {
-  color: rgba(95, 69, 41, 0.65);
+  color: rgba(214, 176, 107, 0.65);
   font-size: 0.82rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -164,7 +166,7 @@ const closePoster = () => {
 
 .section-head h2 {
   margin: 0;
-  color: #4e241b;
+  color: rgba(255, 248, 232, 0.92);
   font-family: var(--font-serif-cn);
   font-size: clamp(1.8rem, 2.2vw, 2.6rem);
 }
@@ -172,7 +174,7 @@ const closePoster = () => {
 .section-intro {
   margin: 0;
   max-width: 52rem;
-  color: #6d5749;
+  color: rgba(246, 238, 229, 0.7);
   line-height: 1.9;
 }
 
@@ -186,9 +188,9 @@ const closePoster = () => {
 
 .poster-card {
   padding: 18px;
-  border: 1px solid rgba(136, 97, 54, 0.18);
-  background: rgba(255, 251, 245, 0.96);
-  box-shadow: 0 18px 36px rgba(56, 34, 17, 0.08);
+  border: 1px solid rgba(255, 248, 232, 0.08);
+  background: rgba(255, 248, 232, 0.045);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   text-align: left;
@@ -196,12 +198,12 @@ const closePoster = () => {
 
 .poster-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(143, 42, 42, 0.34);
-  box-shadow: 0 22px 40px rgba(56, 34, 17, 0.14);
+  border-color: rgba(214, 176, 107, 0.25);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.3);
 }
 
 .poster-frame {
-  background: #efe2ce;
+  background: rgba(20, 18, 16, 0.6);
   padding: 12px;
 }
 
@@ -217,13 +219,13 @@ const closePoster = () => {
 
 .poster-meta h3 {
   margin: 0 0 8px;
-  color: #4f291f;
+  color: rgba(255, 248, 232, 0.9);
   font-size: 1rem;
   line-height: 1.6;
 }
 
 .poster-meta span {
-  color: #9b7350;
+  color: rgba(214, 176, 107, 0.7);
   font-size: 0.84rem;
 }
 
@@ -257,7 +259,7 @@ const closePoster = () => {
   width: min(100%, 1100px);
   max-height: calc(100vh - 72px);
   overflow: auto;
-  background: #f8f2ea;
+  background: rgba(18, 16, 14, 0.82);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
 }
 
@@ -269,7 +271,7 @@ const closePoster = () => {
 
 .lightbox-caption {
   padding: 20px 24px 26px;
-  color: #533126;
+  color: rgba(255, 248, 232, 0.9);
 }
 
 .lightbox-caption h3 {
@@ -280,7 +282,7 @@ const closePoster = () => {
 .lightbox-caption p {
   margin: 0;
   line-height: 1.8;
-  color: #73584c;
+  color: rgba(246, 238, 229, 0.7);
 }
 
 .fade-enter-active,

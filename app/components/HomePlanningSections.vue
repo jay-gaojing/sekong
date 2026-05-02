@@ -19,6 +19,25 @@
         </button>
       </div>
 
+      <!-- 面料板块 -->
+      <header class="section-header fabric-header">
+        <p class="eyebrow">Qipao Commonly Used Fabrics</p>
+        <h2>旗袍常用面料</h2>
+        <p>The commonly used fabrics for the cheongsam</p>
+      </header>
+
+      <div class="fabric-gallery">
+        <button
+          v-for="(image, index) in fabricImages"
+          :key="image"
+          type="button"
+          :class="['fabric-image-card', { 'fabric-image-card-cover': index === 0 }]"
+          @click="previewImage = image"
+        >
+          <img :src="image" :alt="`旗袍常用面料图片 ${index + 1}`" loading="lazy" />
+        </button>
+      </div>
+
       <header class="section-header embroidery-header">
         <p class="eyebrow">Longfeng Qipao Handmade Craftsmanship</p>
         <h2>旗袍传统刺绣纹样</h2>
@@ -53,12 +72,36 @@
 <script setup lang="ts">
 import rawAssets from '../../public/home-planning/home-assets.json'
 
+interface FabricItem {
+  title: string
+  subtitle: string
+  event?: string
+  eventDate?: string
+  description?: string
+  image?: string
+}
+
 interface HomeAssets {
   history: string[]
   embroidery: string[]
+  fabric: FabricItem[]
 }
 
 const assets = rawAssets as HomeAssets
+const fabricImages = [
+  '/images/materials/cover.jpg',
+  '/images/materials/poster-01.jpg',
+  '/images/materials/poster-02.jpg',
+  '/images/materials/poster-03.jpg',
+  '/images/materials/poster-04.jpg',
+  '/images/materials/poster-05.jpg',
+  '/images/materials/poster-06.jpg',
+  '/images/materials/poster-07.jpg',
+  '/images/materials/poster-08.jpg',
+  '/images/materials/poster-09.jpg',
+  '/images/materials/poster-10.jpg',
+  '/images/materials/poster-11.jpg',
+]
 const previewImage = ref('')
 </script>
 
@@ -125,6 +168,70 @@ h2 {
   aspect-ratio: 3 / 4;
 }
 
+/* ==================== Fabric Section ==================== */
+.fabric-header {
+  margin-top: var(--spacing-2xl);
+}
+
+.fabric-gallery {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 10px 16px;
+  gap: 20px;
+  margin-bottom: var(--spacing-2xl);
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(214, 176, 107, 0.55) rgba(255, 255, 255, 0.08);
+}
+
+.fabric-gallery::-webkit-scrollbar {
+  height: 10px;
+}
+
+.fabric-gallery::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.fabric-gallery::-webkit-scrollbar-thumb {
+  background: rgba(214, 176, 107, 0.55);
+  border-radius: 999px;
+}
+
+.fabric-image-card {
+  display: block;
+  flex: 0 0 248px;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  background: #181615;
+  cursor: zoom-in;
+  scroll-snap-align: start;
+}
+
+.fabric-image-card-cover {
+  flex-basis: 280px;
+}
+
+.fabric-image-card img {
+  display: block;
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.25s ease;
+}
+
+.fabric-image-card-cover img {
+  object-position: 18% center;
+}
+
+.fabric-image-card:hover img {
+  transform: scale(1.035);
+}
+
+/* ==================== Embroidery Section ==================== */
 .embroidery-header {
   margin-top: var(--spacing-2xl);
 }
@@ -136,11 +243,11 @@ h2 {
 }
 
 .embroidery-card {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: auto;
+  background: rgba(24, 22, 21, 0.92);
 }
 
 .history-card img,
-.embroidery-card img,
 .feature-panel img {
   width: 100%;
   height: 100%;
@@ -149,11 +256,20 @@ h2 {
   transition: transform 0.25s ease;
 }
 
+.embroidery-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
 .history-card:hover img,
 .embroidery-card:hover img {
   transform: scale(1.04);
 }
 
+/* ==================== Preview Modal ==================== */
 .preview-backdrop {
   position: fixed;
   inset: 0;
@@ -189,6 +305,21 @@ h2 {
   cursor: pointer;
 }
 
+@media (max-width: 900px) {
+  .fabric-gallery {
+    gap: 16px;
+    padding-inline: 4px;
+  }
+
+  .fabric-image-card {
+    flex-basis: 220px;
+  }
+
+  .fabric-image-card-cover {
+    flex-basis: 248px;
+  }
+}
+
 @media (max-width: 640px) {
   .section-inner {
     width: min(100% - 32px, 1180px);
@@ -200,6 +331,22 @@ h2 {
 
   .embroidery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fabric-gallery {
+    gap: 14px;
+  }
+
+  .fabric-image-card img {
+    height: auto;
+  }
+
+  .fabric-image-card {
+    flex-basis: min(72vw, 240px);
+  }
+
+  .fabric-image-card-cover {
+    flex-basis: min(78vw, 268px);
   }
 }
 </style>
