@@ -8,15 +8,15 @@
     </div>
 
     <section class="team-photo-section glass-container animate-fade-up">
-      <img src="/about/team/team-group.jpeg" alt="色控研究院团队大合照" class="team-photo" />
+      <img :src="teamPhoto" alt="色控研究院团队大合照" class="team-photo" />
     </section>
 
     <section class="section-block">
       <h2 class="section-title animate-fade-up">核心团队</h2>
       <div class="team-container glass-container">
-        <div 
-          v-for="(member, index) in members" 
-          :key="index" 
+        <div
+          v-for="(member, index) in members"
+          :key="index"
           class="member-card animate-fade-up"
           :style="{ animationDelay: `${0.1 * (index % 5)}s` }"
         >
@@ -40,27 +40,27 @@
     <section class="section-block advisors-section">
       <h2 class="section-title animate-fade-up">专家顾问</h2>
       <div class="team-container glass-container">
-      <div 
-        v-for="(advisor, index) in advisors" 
-        :key="advisor.name" 
-        class="member-card animate-fade-up"
-        :style="{ animationDelay: `${0.1 * (index % 5)}s` }"
-      >
-        <div class="member-image-wrapper">
-          <img v-if="advisor.image" :src="advisor.image" :alt="advisor.name" class="member-img" />
-          <div v-else class="member-img-placeholder">
-            <span>{{ advisor.name.charAt(0) }}</span>
+        <div
+          v-for="(advisor, index) in advisors"
+          :key="advisor.name"
+          class="member-card animate-fade-up"
+          :style="{ animationDelay: `${0.1 * (index % 5)}s` }"
+        >
+          <div class="member-image-wrapper">
+            <img v-if="advisor.image" :src="advisor.image" :alt="advisor.name" class="member-img" />
+            <div v-else class="member-img-placeholder">
+              <span>{{ advisor.name.charAt(0) }}</span>
+            </div>
+          </div>
+          <div class="member-info">
+            <h2 class="member-name">{{ advisor.name }}</h2>
+            <p class="advisor-role">{{ advisor.role }}</p>
+            <div class="member-desc-box">
+              <p v-if="advisor.description" class="member-desc">{{ advisor.description }}</p>
+              <p v-else class="member-desc empty-desc">暂无详细简介</p>
+            </div>
           </div>
         </div>
-        <div class="member-info">
-          <h2 class="member-name">{{ advisor.name }}</h2>
-          <p class="advisor-role">{{ advisor.role }}</p>
-          <div class="member-desc-box">
-            <p v-if="advisor.description" class="member-desc">{{ advisor.description }}</p>
-            <p v-else class="member-desc empty-desc">暂无详细简介</p>
-          </div>
-        </div>
-      </div>
       </div>
     </section>
   </div>
@@ -68,13 +68,25 @@
 
 <script setup lang="ts">
 import { useHead } from '#imports'
-// @ts-ignore
-import membersData from '../../../public/about/members.json'
-// @ts-ignore
-import advisorsData from '../../../public/about/advisors.json'
+import advisorsData from '~/data/about-advisors.json'
+import membersData from '~/data/about-members.json'
 
-const members = membersData || []
-const advisors = advisorsData || []
+type AboutMember = {
+  name: string
+  description?: string
+  image?: string
+}
+
+type AboutAdvisor = {
+  name: string
+  role?: string
+  description?: string
+  image?: string
+}
+
+const teamPhoto = '/about/team/team-group.jpeg'
+const members = membersData as AboutMember[]
+const advisors = advisorsData as AboutAdvisor[]
 
 useHead({
   title: '团队介绍 - 色控旗袍数据库'
@@ -224,8 +236,8 @@ useHead({
   color: var(--color-gold);
   margin-bottom: 12px;
   text-align: center;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
   letter-spacing: 4px;
 }
 
@@ -248,7 +260,6 @@ useHead({
   max-height: 200px;
 }
 
-/* 自定义滚动条 */
 .member-desc-box::-webkit-scrollbar {
   width: 4px;
 }
@@ -277,7 +288,6 @@ useHead({
   padding: 20px 0;
 }
 
-/* 响应式调整 */
 @media (max-width: 768px) {
   .team-photo-section {
     margin: 0 20px 3rem;
