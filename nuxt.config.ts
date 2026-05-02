@@ -6,5 +6,10 @@ export default defineNuxtConfig({
     server: {
       allowedHosts: ["ddnsgo1.intranetpenetration.us.ci"]
     }
+  },
+  nitro: {
+    output: {
+      publicDir: 'dist'
+    }
   }
 })
